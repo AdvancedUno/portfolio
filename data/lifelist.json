@@ -1,8 +1,12 @@
 [
-  { "id": "postcard", "label": "Opened a postcard", "section": "range" },
   { "id": "loupe", "label": "Used the loupe", "section": "identification" },
-  { "id": "bullseye", "label": "Hit a bullseye", "section": "behavior" },
-  { "id": "violin", "label": "Played the violin recording", "section": "song" },
+  { "id": "field-mark", "label": "Read a field mark", "section": "identification" },
+  { "id": "postcard", "label": "Opened a postcard", "section": "range" },
+  { "id": "writeup", "label": "Unfolded a write-up", "section": "tracks" },
+  { "id": "family-tree", "label": "Found the family tree", "section": "tracks" },
+  { "id": "field-note", "label": "Opened a field note", "section": "field-log" },
+  { "id": "lamp", "label": "Turned off the lamp", "section": null },
   { "id": "drawer", "label": "Opened the drawer", "section": "drawer" },
-  { "id": "family-tree", "label": "Found the family tree", "section": "tracks" }
+  { "id": "violin", "label": "Played the violin recording", "section": "song" },
+  { "id": "bullseye", "label": "Hit a bullseye", "section": "behavior" }
 ]

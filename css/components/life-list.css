@@ -1,0 +1,262 @@
+/* life-list.css: the field checklist in the corner, and the First specimen click game. */
+
+.life-list {
+  position: fixed;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  z-index: 55;
+  color: #33362f;
+}
+
+@media (max-width: 719.98px) {
+  .life-list {
+    left: var(--space-2);
+    bottom: calc(var(--bar-h) + env(safe-area-inset-bottom) + var(--space-2));
+  }
+}
+
+/* Collapsed: a small card with a count. */
+.life-list__toggle {
+  display: grid;
+  grid-template-columns: auto;
+  justify-items: start;
+  padding: .45rem .8rem .4rem;
+  color: #33362f;
+  background: #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .45);
+  box-shadow: 0 1px 2px rgba(25, 20, 10, .25);
+  rotate: -2deg;
+  cursor: pointer;
+}
+
+.life-list__title {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.life-list__count {
+  font-family: var(--font-label);
+  font-size: .6875rem;
+  color: #5d6157;
+}
+
+/* The ticked box on the card; it only shows on phones, where it stands in for the title. */
+.life-list__icon { display: none; width: .85rem; height: .85rem; }
+.life-list__icon .life-list__tick { stroke-dashoffset: 0; width: 1.25rem; height: 1.25rem; }
+
+/* Phones: a small pill with a ticked box and the count, so it covers almost nothing. */
+@media (max-width: 719.98px) {
+  .life-list__toggle {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .3rem .6rem;
+    border-radius: 999px;
+    rotate: none;
+  }
+  .life-list__icon { display: block; }
+  .life-list__title { display: none; }
+  .life-list__count { font-size: .75rem; }
+}
+
+/* A small wiggle when something new is found. */
+@media (prefers-reduced-motion: no-preference) {
+  .life-list.is-bumped .life-list__toggle { animation: bump 600ms var(--ease-out); }
+}
+
+@keyframes bump {
+  30% { rotate: 3deg; scale: 1.08; }
+  60% { rotate: -4deg; }
+}
+
+/* Opened: a checklist sheet above the card. */
+.life-list__panel {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + var(--space-2));
+  width: min(19rem, calc(100vw - 2rem));
+  max-height: min(28rem, calc(100vh - 10rem));
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 calc(2rem - 1px), rgba(90, 110, 130, .16) calc(2rem - 1px) 2rem),
+    #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .45);
+  box-shadow: 0 16px 30px -18px rgba(0, 0, 0, .55);
+}
+
+.life-list__intro {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: #5d6157;
+}
+
+.life-list__items {
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.life-list__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 2rem;
+  max-width: none;
+  font-size: var(--text-sm);
+}
+
+/* A drawn checkbox; the tick draws itself in when found. */
+.life-list__box {
+  position: relative;
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 1.5px solid #33362f;
+  border-radius: 2px 3px 2px 4px;
+}
+
+.life-list__tick {
+  position: absolute;
+  left: -.15rem;
+  bottom: -.05rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: none;
+  stroke: #8f4632;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+}
+
+.life-list__item.is-found .life-list__tick { stroke-dashoffset: 0; }
+.life-list__item.is-found .life-list__label { color: #5d6157; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .life-list__item.is-new .life-list__tick { animation: tick-draw 500ms ease-out; }
+
+  /* The stamp: a rust "Seen" that thumps down beside a new find. */
+  .life-list__item.is-new::after {
+    content: "Seen";
+    position: absolute;
+    right: 0;
+    padding: 0 .35rem;
+    font-family: var(--font-label);
+    font-size: .6875rem;
+    color: #8f4632;
+    border: 1.5px solid currentColor;
+    border-radius: 3px;
+    mix-blend-mode: multiply;
+    rotate: -8deg;
+    animation: stamp 1.6s var(--ease-out) forwards;
+  }
+}
+
+@keyframes tick-draw { from { stroke-dashoffset: 24; } }
+
+@keyframes stamp {
+  0% { opacity: 0; scale: 1.8; }
+  18% { opacity: 1; scale: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.life-list__done {
+  margin-top: var(--space-3);
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.life-list__done a { color: #2f4a63; }
+
+.life-list__close {
+  margin-top: var(--space-3);
+  padding: .2rem .6rem;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: #33362f;
+  background: none;
+  border: 1px solid rgba(51, 54, 47, .45);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.life-list :focus-visible { outline-color: #4a6278; }
+
+/* ---------- First specimen and the click game ---------- */
+
+.first-specimen__text {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--measure);
+  margin-top: calc(var(--rule-gap) * 1.5);
+}
+
+.game {
+  margin-top: calc(var(--rule-gap) * 2);
+  max-width: 44rem;
+}
+
+.game__field {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  max-height: 70vh;
+  color: #33362f;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 calc(1.75rem - 1px), rgba(90, 110, 130, .16) calc(1.75rem - 1px) 1.75rem),
+    #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .45);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.game__start {
+  padding: .5rem 1.4rem;
+  font-family: var(--font-hand);
+  font-size: 1.8rem;
+  color: #33362f;
+  background: color-mix(in srgb, #c39a3f 45%, #f3f1e9);
+  border: 1.5px solid #33362f;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* A target: an ochre wash inside a pencil ring, with a bullseye dot. */
+.game__target {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  translate: -50% -50%;
+  padding: 0;
+  background:
+    radial-gradient(circle, #8f4632 0 12%, transparent 13%),
+    radial-gradient(circle, transparent 0 40%, rgba(51, 54, 47, .6) 41% 43%, transparent 44%),
+    color-mix(in srgb, #c39a3f 55%, #f3f1e9);
+  border: 2px solid #33362f;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .game__target { animation: target-pop 220ms var(--ease-out); }
+}
+
+@keyframes target-pop { from { scale: .3; opacity: 0; } }
+
+.game__target:focus-visible { outline: 3px dashed #6a8399; outline-offset: 4px; }
+
+.game__status {
+  min-height: 1.6em;
+  margin-top: var(--space-3);
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  color: var(--ink-soft);
+}

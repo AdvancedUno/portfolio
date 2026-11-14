@@ -12,6 +12,8 @@ import { initBackCover } from './sections/back-cover.js';
 import { initRange } from './sections/range.js';
 import { initTracks } from './sections/tracks.js';
 import { initFieldLog } from './sections/field-log.js';
+import { initFirstSpecimen } from './sections/first-specimen.js';
+import { initLifeList } from './sections/life-list.js';
 
 // Lets CSS tell "scripts are running" apart from the plain HTML fallback.
 document.documentElement.classList.add('js');
@@ -19,11 +21,11 @@ document.documentElement.classList.add('js');
 applyTilts();
 initLamp(document.querySelector('.lamp'));
 initNav();
+initFirstSpecimen();
 initCover();
 fillPlateData();
-initIdentification();
 initSighting();
 initBackCover();
-initRange();
-initTracks();
-initFieldLog();
+
+// The life list shows only items whose sections are built, so it starts once they are.
+Promise.allSettled([initIdentification(), initRange(), initTracks(), initFieldLog()]).then(initLifeList);

@@ -154,6 +154,17 @@ html[data-cover="closed"] .notebook {
 .notebook__stickers li:nth-child(3n + 2) .sticker { --wash: #c39a3f; }
 .notebook__stickers li:nth-child(3n + 3) .sticker { --wash: #6a8399; }
 
+/* The secret sticker: small, sun-faded, half peeled. */
+.sticker.sticker--secret {
+  width: 1.7rem;
+  opacity: .55;
+  background: color-mix(in srgb, #f3f1e9 70%, #c39a3f);
+  box-shadow: 1px 1px 0 rgba(25, 20, 10, .25);
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 64% 100%, 0 100%);
+}
+
+.sticker.sticker--secret:hover { opacity: .9; }
+
 /* One sticker is a rounded rectangle, one a stamp-like square, so they do not look stamped out. */
 .notebook__stickers li:nth-child(2) .sticker { border-radius: 30% 34% 28% 36%; }
 .notebook__stickers li:nth-child(4) .sticker { border-radius: 8px; }

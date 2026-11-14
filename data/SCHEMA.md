@@ -76,7 +76,7 @@ Two kinds of node share the file, because the family tree needs both:
 
 ## lifelist.json
 
-`{ id, label, section }[]`. `section` is the id of the section where the discovery happens.
+`{ id, label, section }[]`. `section` is the id of the section where the discovery happens, or `null` for site-wide ones (like the lamp). An item only appears once its section is built, so the list can always be finished.
 
 ## fallback/
 

@@ -58,6 +58,7 @@ export function initCover() {
   notebook.querySelectorAll('.sticker').forEach((sticker) => {
     sticker.addEventListener('click', (event) => {
       event.preventDefault();
+      if (sticker.hash === '#first-specimen') document.dispatchEvent(new CustomEvent('fieldguide:unlock-first-specimen'));
       open(sticker.hash.slice(1));
     });
   });
