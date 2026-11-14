@@ -45,7 +45,7 @@ function isTypingOrBusy(event) {
     || event.altKey || event.ctrlKey || event.metaKey
     || el.closest?.('input, textarea, select, [contenteditable=""], [contenteditable="true"], [data-own-keys]')
     || document.documentElement.dataset.cover === 'closed'
-    || dialog?.open;
+    || Boolean(document.querySelector('dialog[open]'));
 }
 
 const dialog = document.getElementById('index-dialog');

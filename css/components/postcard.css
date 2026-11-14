@@ -1,0 +1,219 @@
+/* postcard.css: the postcard dialog. The card is paper in both themes, so its inks are fixed. */
+
+.postcard-dialog {
+  width: min(100% - 2rem, 42rem);
+  max-height: calc(100% - 2rem);
+  padding: 0;
+  overflow: visible;
+  color: #33362f;
+  background: transparent;
+  border: 0;
+  perspective: 1800px;
+}
+
+.postcard-dialog::backdrop { background: rgba(29, 30, 26, .55); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .postcard-dialog[open] { animation: postcard-in 380ms var(--ease-out); }
+}
+
+@keyframes postcard-in {
+  from { opacity: 0; translate: 0 1.5rem; rotate: -3deg; }
+}
+
+/* Both faces share one grid cell, so the card is as tall as the taller face. */
+.postcard {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 700ms var(--ease-swing);
+  cursor: pointer;
+}
+
+.postcard.is-flipped { transform: rotateY(180deg); }
+
+.postcard__face {
+  grid-area: 1 / 1;
+  position: relative;
+  min-height: min(26rem, 62vh);
+  padding: var(--space-5);
+  background: #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .35);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(51, 54, 47, .15), 0 24px 40px -24px rgba(0, 0, 0, .6);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.postcard__back { transform: rotateY(180deg); }
+
+/* Reduced motion: no flip, a crossfade. */
+@media (prefers-reduced-motion: reduce) {
+  .postcard { transition: none; }
+  .postcard.is-flipped { transform: none; }
+  .postcard__back { transform: none; opacity: 0; }
+  .postcard__face { transition: opacity 250ms ease; }
+  .postcard.is-flipped .postcard__front { opacity: 0; }
+  .postcard.is-flipped .postcard__back { opacity: 1; }
+}
+
+/* ---------- Front ---------- */
+
+.postcard__front { padding: 0; }
+
+.postcard__photo img,
+.postcard__outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.postcard__outline { padding: 6% 8% 14%; }
+
+.postcard__place {
+  position: absolute;
+  left: var(--space-5);
+  bottom: var(--space-4);
+  font-family: var(--font-hand);
+  font-size: clamp(2.25rem, 1.6rem + 3vw, 3.5rem);
+  line-height: 1;
+  color: #33362f;
+  text-shadow: 0 0 6px rgba(243, 241, 233, .9);
+}
+
+.postmark {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  width: clamp(8rem, 30%, 11rem);
+  color: #8f4632;
+  font-family: var(--font-label);
+  mix-blend-mode: multiply;
+  opacity: .85;
+  rotate: -9deg;
+}
+
+.postmark text { fill: currentColor; }
+
+/* ---------- Back ---------- */
+
+.postcard__back {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-5);
+}
+
+/* The dividing line down the middle of a postcard. */
+.postcard__back::before {
+  content: "";
+  position: absolute;
+  top: 12%;
+  bottom: 12%;
+  left: 52.4%;
+  border-left: 1px solid rgba(51, 54, 47, .35);
+}
+
+.postcard__note p {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  max-width: none;
+}
+
+.postcard__note .is-placeholder[class] { color: #5d6157; }
+
+.postcard__note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.postcard__note .postcard__typed {
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: #5d6157;
+}
+
+.postcard__facts {
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-5);
+  padding-left: var(--space-3);
+}
+
+.postcard__fact-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-2) var(--space-3);
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+}
+
+.postcard__fact-list dt { color: #5d6157; }
+.postcard__fact-list dd { margin: 0; }
+
+.postcard__country {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.postcard__flag {
+  width: 1.75rem;
+  height: auto;
+  border: 1px solid rgba(51, 54, 47, .3);
+}
+
+.postcard__weather {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.postcard__weather .weather-icon { flex: none; }
+
+.is-loading {
+  min-height: 1.2em;
+  background: linear-gradient(90deg, rgba(51, 54, 47, .08), rgba(51, 54, 47, .16), rgba(51, 54, 47, .08)) 0 0 / 200% 100%;
+  border-radius: 3px;
+}
+
+@media (max-width: 559.98px) {
+  .postcard__back { grid-template-columns: 1fr; }
+  .postcard__back::before { display: none; }
+  .postcard__facts {
+    padding-left: 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid rgba(51, 54, 47, .3);
+  }
+}
+
+/* ---------- Buttons under the card ---------- */
+
+.postcard__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.postcard__actions button {
+  padding: .4rem 1rem;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  color: #33362f;
+  background: #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .45);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.postcard__actions button:focus-visible { outline: 2px dashed #f3f1e9; outline-offset: 3px; }
