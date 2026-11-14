@@ -1,0 +1,9 @@
+# Local Claude Code state
+.claude/worktrees/
+.claude/settings.local.json
+
+# OS and editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

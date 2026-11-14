@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- A small pencil-drawn leaf. Strokes wobble a little so it reads as hand-drawn. -->
+  <style>
+    .wash { fill: #8fa58a; fill-opacity: .45; }
+    .line { fill: none; stroke: #33362f; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-color-scheme: dark) {
+      .wash { fill-opacity: .7; }
+      .line { stroke: #e4e0d3; }
+    }
+  </style>
+  <path class="wash" d="M7.2 25.6C5.4 16.8 11.6 7.1 26.4 5.2c.9 12.6-6.4 20.9-19.2 20.4Z"/>
+  <path class="line" stroke-width="1.7" d="M7.2 25.6C5.3 17 11.4 7.3 26.4 5.2c1 12.5-6.2 20.8-19 20.5"/>
+  <path class="line" stroke-width="1.5" d="M3.6 29.1 7.9 24.7c4.6-5 9.3-10.6 14.6-15.8"/>
+  <path class="line" stroke-width="1.1" d="M11.3 20.2l-.7-4.6M15.1 16.2l-.3-5.1M18.8 12.4l.2-3.9M11.3 20.2l4.8.8M15.1 16.2l5.2.3M18.8 12.4l4.3-.2"/>
+</svg>
