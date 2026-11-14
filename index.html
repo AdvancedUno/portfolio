@@ -79,7 +79,7 @@
 
   <!-- The closed notebook. Shown only when the head script says so; cover.js opens it. -->
   <div id="notebook" class="notebook">
-    <div class="notebook__board" data-tilt="notebook-board">
+    <div class="notebook__board kraft" data-tilt="notebook-board">
       <button class="notebook__open" type="button" aria-describedby="notebook-title">
         <span class="notebook__hint">Lift the cover</span>
       </button>
@@ -87,7 +87,7 @@
         <p id="notebook-title" class="notebook__title">A Field Guide to Uno</p>
         <p class="notebook__species">Species: Uno</p>
       </div>
-      <span class="notebook__band" aria-hidden="true"></span>
+      <span class="kraft__band" aria-hidden="true"></span>
       <ul class="notebook__stickers" aria-label="Shortcuts">
         <li><a class="sticker" href="#range" style="--x: 12%; --y: 54%" data-tilt="sticker-range"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-range"/></svg><span class="visually-hidden">Range and migration</span></a></li>
         <li><a class="sticker" href="#tracks" style="--x: 37%; --y: 64%" data-tilt="sticker-tracks"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tracks"/></svg><span class="visually-hidden">Tracks and signs</span></a></li>
@@ -340,9 +340,16 @@
     <h2 id="life-list-title" class="visually-hidden">Life list</h2>
   </aside>
 
-  <footer id="back-cover" class="back-cover">
-    <h2>If found, please return to</h2>
-    <p class="note">Still being sketched.</p>
+  <!-- The back cover: a kraft board with a return label. back-cover.js fills the name and links from profile.json. -->
+  <footer id="back-cover" class="back-cover" aria-labelledby="back-cover-title">
+    <div class="back-board kraft" data-tilt="back-board">
+      <span class="kraft__band" aria-hidden="true"></span>
+      <div class="return-label">
+        <h2 id="back-cover-title">If found, please return to:</h2>
+        <p class="return-label__name"></p>
+        <ul class="return-label__lines"></ul>
+      </div>
+    </div>
   </footer>
 </body>
 </html>

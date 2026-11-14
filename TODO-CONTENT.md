@@ -14,8 +14,7 @@ Everything here is something only Uno can write or confirm. In the data files, e
 
 - [ ] `nameOrigin`: where the name Uno comes from
 - [ ] `intro`: two or three sentences, first person
-- [ ] `portrait`: which photo is the portrait
-- [ ] `fieldMarks`: each mark's label, a short note, and where it sits on the portrait
+- [ ] Field mark notes: one or two short sentences each for Glasses, Grin, and Food in hand (and what the food was). The marks themselves are set on the Pike Place portrait.
 - [ ] `currently.reading`: a book (also add it to `books.json`)
 - [ ] `currently.listening`: an album (also add it to `music.json`)
 - [ ] `currently.building`: which project
