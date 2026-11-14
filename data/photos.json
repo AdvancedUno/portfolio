@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "id": "pike-place",
+    "src": "./assets/photos/pike-place.jpg",
+    "webp": "./assets/photos/pike-place.webp",
+    "alt": "Uno, mouth wide open, about to bite into something wrapped in paper, under the Public Market sign at Pike Place.",
+    "width": 900,
+    "height": 1200,
+    "cleared": true,
+    "filter": "pencil"
+  },
+  {
+    "id": "microsoft-sign",
+    "src": "./assets/photos/microsoft-sign.jpg",
+    "webp": "./assets/photos/microsoft-sign.webp",
+    "alt": "Uno leaning on the Microsoft logo sign outside a glass office building, with trees and a hedge behind.",
+    "width": 1200,
+    "height": 900,
+    "cleared": true,
+    "filter": "pencil"
+  },
+  {
+    "id": "hike",
+    "src": "./assets/photos/hike.jpg",
+    "webp": "./assets/photos/hike.webp",
+    "alt": "Uno in sunglasses on a rocky trail, with tall firs and snowy peaks behind.",
+    "width": 900,
+    "height": 1200,
+    "cleared": true,
+    "filter": "watercolor"
+  },
+  {
+    "id": "dartboard",
+    "src": "./assets/photos/dartboard.jpg",
+    "webp": "./assets/photos/dartboard.webp",
+    "alt": "A well-used dartboard on a wooden frame, with three darts in it.",
+    "width": 900,
+    "height": 1200,
+    "cleared": true,
+    "filter": "pencil"
+  },
+  {
+    "id": "winter-jazz-pizza",
+    "src": "./assets/photos/winter-jazz-pizza.jpg",
+    "webp": "./assets/photos/winter-jazz-pizza.webp",
+    "alt": "A pizza on a cutting board in a dim room, with a mug and hot sauce, and a winter jazz playlist projected on the wall.",
+    "width": 900,
+    "height": 1200,
+    "cleared": true,
+    "filter": "watercolor"
+  }
+]

@@ -5,7 +5,9 @@ Everything here is something only Uno can write or confirm. In the data files, e
 ## Cover and site-wide
 
 - [ ] A photo of the closed notebook cover for link previews (`assets/scans/og-cover.jpg`, ideally 1200 x 630)
-- [ ] Photos for the site, listed in `data/photos.json`: id, files, alt text, size, `cleared` for any friend's face, pencil or watercolor
+- [ ] Review the alt text I drafted for the five photos in `data/photos.json` (I described only what is visible)
+- [ ] Blackjack selfie and the group photo on the lawn: left out because they show friends' faces. Add them only if those friends say yes.
+- [ ] More photos as sections need them (postcards, drawer objects)
 - [ ] Later: replace the handwriting font with my own (Calligraphr), through `--font-hand`
 
 ## Identification (`profile.json`)
