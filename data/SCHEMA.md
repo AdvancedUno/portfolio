@@ -67,10 +67,11 @@ Two kinds of node share the file, because the family tree needs both:
 
 ## photos.json
 
-`{ id, src, webp, alt, width, height, cleared, filter }[]`
+`{ id, src, webp, alt, width, height, cleared, filter, pencilWeight? }[]`
 
 - `src` is the JPEG and `webp` is the WebP in `assets/photos/`, at most 1200px on the long edge.
 - `filter` is `"pencil"` or `"watercolor"`.
+- `pencilWeight` (optional, default 1) darkens a pencil sketch. Use around 1.5 for bright, sunlit photos.
 - `cleared: true` is required before any photo showing a friend's face is published.
 
 ## lifelist.json

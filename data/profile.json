@@ -3,8 +3,30 @@
   "nickname": "Uno",
   "nameOrigin": "TODO(uno): where the name Uno comes from, in a sentence or two",
   "intro": "TODO(uno): short first-person intro for the Identification section, two or three sentences",
-  "portrait": "TODO(uno): id of the portrait photo in photos.json",
-  "fieldMarks": [],
+  "portrait": "pike-place-portrait",
+  "fieldMarks": [
+    {
+      "id": "glasses",
+      "label": "Glasses",
+      "note": "TODO(uno): a short note about the glasses",
+      "x": 40,
+      "y": 25
+    },
+    {
+      "id": "grin",
+      "label": "Grin",
+      "note": "TODO(uno): a short note about the grin",
+      "x": 40.8,
+      "y": 30.2
+    },
+    {
+      "id": "food-in-hand",
+      "label": "Food in hand",
+      "note": "TODO(uno): a short note about the food in hand (and what it was)",
+      "x": 42,
+      "y": 35.4
+    }
+  ],
   "currently": {
     "reading": "TODO(uno): id of a book in books.json",
     "listening": "TODO(uno): id of an album in music.json",
@@ -40,13 +62,17 @@
     {
       "id": "soccer",
       "name": "Soccer",
-      "facts": ["Varsity midfielder"],
+      "facts": [
+        "Varsity midfielder"
+      ],
       "note": "TODO(uno): a short note about soccer, in my words"
     },
     {
       "id": "aikido",
       "name": "Aikido",
-      "facts": ["Second-degree black belt"],
+      "facts": [
+        "Second-degree black belt"
+      ],
       "note": "TODO(uno): a short note about aikido, in my words"
     },
     {
@@ -58,7 +84,9 @@
     {
       "id": "blackjack",
       "name": "Blackjack",
-      "facts": ["Blackjack nights with friends"],
+      "facts": [
+        "Blackjack nights with friends"
+      ],
       "note": "TODO(uno): a short note about blackjack nights, in my words"
     }
   ],

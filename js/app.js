@@ -6,6 +6,7 @@ import { fillPlateData } from './lib/plates.js';
 import { initLamp } from './lib/lamp.js';
 import { initNav } from './sections/nav.js';
 import { initCover } from './sections/cover.js';
+import { initIdentification } from './sections/identification.js';
 
 // Lets CSS tell "scripts are running" apart from the plain HTML fallback.
 document.documentElement.classList.add('js');
@@ -15,3 +16,4 @@ initLamp(document.querySelector('.lamp'));
 initNav();
 initCover();
 fillPlateData();
+initIdentification();

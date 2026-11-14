@@ -1,5 +1,16 @@
 [
   {
+    "id": "pike-place-portrait",
+    "src": "./assets/photos/pike-place-portrait.jpg",
+    "webp": "./assets/photos/pike-place-portrait.webp",
+    "alt": "Uno in glasses, mouth wide open, about to bite into something wrapped in paper, with Pike Place Market behind.",
+    "width": 900,
+    "height": 1200,
+    "cleared": true,
+    "filter": "pencil",
+    "pencilWeight": 1.6
+  },
+  {
     "id": "pike-place",
     "src": "./assets/photos/pike-place.jpg",
     "webp": "./assets/photos/pike-place.webp",

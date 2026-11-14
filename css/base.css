@@ -81,6 +81,17 @@ p { text-wrap: pretty; }
   color: var(--ink-soft);
 }
 
+/* Text Uno has not written yet (a TODO(uno) in the data) shows as a faint handwritten note. */
+
+/* [class] lifts specificity so component font sizes do not shrink the placeholder. */
+.is-placeholder[class] {
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  line-height: 1.2;
+  color: var(--ink-soft);
+  opacity: .8;
+}
+
 /* Typewritten specimen labels and dates. Used sparingly. */
 .label,
 .specimen-label,

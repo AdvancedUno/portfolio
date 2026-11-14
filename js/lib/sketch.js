@@ -9,16 +9,13 @@
 
 import { drawingSvg, edgeMaskSvg } from './filters.js';
 import { attachLoupe } from './loupe.js';
-
-// Photo paths in photos.json are relative to the site root, which is two levels up from here.
-const siteRoot = new URL('../../', import.meta.url);
-const fromRoot = (path) => new URL(path, siteRoot).href;
+import { fromRoot } from './data.js';
 
 const svgUrl = (svg) => URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
 
 /**
  * Build a sketch figure for one photos.json entry.
- * @param {{id, src, webp, alt, width, height, filter}} photo
+ * @param {{id, src, webp, alt, width, height, filter, pencilWeight?}} photo   pencilWeight darkens a pencil sketch (default 1)
  * @param {{caption?: string}} [options]
  * @returns {HTMLElement} a <figure class="sketch">
  */
@@ -55,7 +52,7 @@ export function createSketch(photo, { caption } = {}) {
   if (caption) figure.querySelector('.sketch__caption').textContent = caption;
 
   attachLoupe(figure);
-  whenNear(figure, () => queueBake(figure, kind));
+  whenNear(figure, () => queueBake(figure, kind, photo.pencilWeight ?? 1));
   return figure;
 }
 
@@ -63,14 +60,14 @@ export function createSketch(photo, { caption } = {}) {
 
 let queue = Promise.resolve();
 
-function queueBake(figure, kind) {
-  queue = queue.then(() => bake(figure, kind)).catch(() => {
+function queueBake(figure, kind, weight) {
+  queue = queue.then(() => bake(figure, kind, weight)).catch(() => {
     // If baking fails, the sketch stays a soft gray photo: still readable, never broken.
     figure.classList.add('is-unbaked');
   });
 }
 
-async function bake(figure, kind) {
+async function bake(figure, kind, weight) {
   const photoImg = figure.querySelector('.sketch__photo img');
   const drawing = figure.querySelector('.sketch__drawing');
   photoImg.loading = 'eager';
@@ -91,7 +88,7 @@ async function bake(figure, kind) {
   // Draw at the photo's own pixel size (from photos.json), so the filter tuning holds.
   const width = Number(photoImg.getAttribute('width'));
   const height = Number(photoImg.getAttribute('height'));
-  drawing.src = svgUrl(drawingSvg(width, height, kind, dataUrl));
+  drawing.src = svgUrl(drawingSvg(width, height, kind, dataUrl, weight));
   await drawing.decode();
   figure.classList.add('is-drawn');
 }

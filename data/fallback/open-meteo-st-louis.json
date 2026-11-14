@@ -1,0 +1,23 @@
+{
+  "latitude": 38.622715,
+  "longitude": -90.2129,
+  "generationtime_ms": 0.13005733489990234,
+  "utc_offset_seconds": -21600,
+  "timezone": "America/Chicago",
+  "timezone_abbreviation": "GMT-6",
+  "elevation": 145.0,
+  "current_units": {
+    "time": "iso8601",
+    "interval": "seconds",
+    "temperature_2m": "\u00c2\u00b0F",
+    "weather_code": "wmo code",
+    "is_day": ""
+  },
+  "current": {
+    "time": "2026-11-14T12:00",
+    "interval": 900,
+    "temperature_2m": 44.1,
+    "weather_code": 0,
+    "is_day": 1
+  }
+}

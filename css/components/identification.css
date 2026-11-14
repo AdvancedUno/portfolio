@@ -1,0 +1,216 @@
+/* identification.css: the portrait with field marks, and the written facts beside it. */
+
+.ident {
+  display: grid;
+  gap: calc(var(--rule-gap) * 2);
+  margin-top: calc(var(--rule-gap) * 2);
+}
+
+/* ---------- Portrait and field marks ---------- */
+
+.ident__specimen {
+  position: relative;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.ident__portrait { max-width: 26rem; }
+
+/* Markers on the portrait. Decorative for assistive tech: the labels are the controls.
+   Each marker is a pencil pinpoint on the feature itself, so nothing covers the face.
+   Phones: the number sits in a small bubble to the right, on a short leader line.
+   From 1024px: the long pointer line and the numbered label carry the number instead. */
+.mark-dot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 2;
+  width: .55rem;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  background: var(--sheet-ink);
+  border: 1.5px solid var(--sheet);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color var(--dur-quick), scale var(--dur-quick) var(--ease-out);
+}
+
+.mark-dot.is-active {
+  background: var(--ochre);
+  scale: 1.5;
+}
+
+/* A bigger, invisible hit area, so the pinpoint is easy to hover or tap. */
+.mark-dot::after {
+  content: "";
+  position: absolute;
+  inset: -.7rem;
+}
+
+/* Phone leader line and number bubble. */
+.mark-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 1rem;
+  border-top: 1px solid var(--sheet-ink);
+}
+
+.mark-dot__no {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 1rem);
+  display: grid;
+  place-items: center;
+  width: 1.15rem;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  font-family: var(--font-label);
+  font-size: .6875rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--sheet-ink);
+  background: var(--sheet);
+  border: 1px solid var(--sheet-ink);
+  border-radius: 50%;
+}
+
+.mark-dot.is-active .mark-dot__no { background: color-mix(in srgb, var(--ochre) 55%, var(--sheet)); }
+
+@media (min-width: 1024px) {
+  .mark-dot::before,
+  .mark-dot__no { display: none; }
+}
+
+.field-marks {
+  display: grid;
+  align-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.field-marks li { max-width: none; }
+
+.field-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-1) 0;
+  font-family: var(--font-hand);
+  font-size: var(--text-h3);
+  line-height: 1;
+  color: var(--ink);
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.field-mark__no {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 1.5rem;
+  aspect-ratio: 1;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+.field-mark__label {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .25em;
+  transition: text-decoration-color var(--dur-quick);
+}
+
+.field-mark:hover .field-mark__label,
+.field-mark[aria-expanded="true"] .field-mark__label { text-decoration-color: var(--ochre); }
+
+.field-mark__note {
+  max-width: 30ch;
+  margin: var(--space-1) 0 var(--space-2) calc(1.5rem + var(--space-3));
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.ident__lines { display: none; }
+
+@media (min-width: 1024px) {
+  .ident__specimen {
+    grid-template-columns: minmax(0, 1.5fr) minmax(11rem, 1fr);
+    align-items: center;
+    column-gap: var(--space-8);
+  }
+
+  .ident__lines {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .ident__lines path {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    opacity: .45;
+    transition: opacity var(--dur-quick), stroke-width var(--dur-quick);
+  }
+
+  .ident__lines path.is-active {
+    opacity: 1;
+    stroke-width: 1.6;
+  }
+}
+
+/* ---------- Written facts ---------- */
+
+.ident__text {
+  display: grid;
+  gap: calc(var(--rule-gap) * 1.5);
+  max-width: var(--measure);
+}
+
+.ident__facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-2) var(--space-5);
+  align-items: baseline;
+  margin: 0;
+}
+
+.ident__facts dt {
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.ident__facts dd { margin: 0; }
+
+.ident__block h3 { margin-bottom: var(--space-3); }
+
+.ident__education {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ident__education li { display: grid; }
+
+.ident__education .label {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}

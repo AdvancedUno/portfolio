@@ -7,8 +7,11 @@
 
 const n = (value) => Number(value.toFixed(4));
 
-/** Pencil: grayscale, invert, blur, color-dodge (the classic sketch trick), darken, then grain. */
-export function pencilFilter(id, k) {
+/**
+ * Pencil: grayscale, invert, blur, color-dodge (the classic sketch trick), darken, then grain.
+ * weight > 1 darkens the lines, for bright, sunlit photos that would otherwise sketch too faint.
+ */
+export function pencilFilter(id, k, weight = 1) {
   return `
   <filter id="${id}" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
     <feColorMatrix in="SourceGraphic" type="saturate" values="0" result="gray"/>
@@ -18,7 +21,7 @@ export function pencilFilter(id, k) {
     <feGaussianBlur in="inv" stdDeviation="${n(3.2 * k)}" result="blur"/>
     <feBlend in="blur" in2="gray" mode="color-dodge" result="dodge"/>
     <feComponentTransfer in="dodge" result="dark">
-      <feFuncR type="gamma" exponent="2.6"/><feFuncG type="gamma" exponent="2.6"/><feFuncB type="gamma" exponent="2.6"/>
+      <feFuncR type="gamma" exponent="${n(2.6 * weight)}"/><feFuncG type="gamma" exponent="${n(2.6 * weight)}"/><feFuncB type="gamma" exponent="${n(2.6 * weight)}"/>
     </feComponentTransfer>
     <feTurbulence type="fractalNoise" baseFrequency="${n(0.9 / k)}" numOctaves="2" seed="7" result="noise"/>
     <feColorMatrix in="noise" type="matrix" values=".22 0 0 0 .8  .22 0 0 0 .8  .22 0 0 0 .8  0 0 0 0 1" result="grain"/>
@@ -80,9 +83,9 @@ export function edgeMaskSvg(width, height, kind) {
 }
 
 /** A self-contained SVG that draws the photo (as a data URL) through one of the filters. */
-export function drawingSvg(width, height, kind, photoDataUrl) {
+export function drawingSvg(width, height, kind, photoDataUrl, weight = 1) {
   const k = width / 720;
-  const filter = kind === 'watercolor' ? watercolorFilter('f', k) : pencilFilter('f', k);
+  const filter = kind === 'watercolor' ? watercolorFilter('f', k) : pencilFilter('f', k, weight);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <defs>${filter}</defs>
   <image href="${photoDataUrl}" width="${width}" height="${height}" filter="url(#f)"/>
