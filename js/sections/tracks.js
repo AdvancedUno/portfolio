@@ -111,10 +111,12 @@ export async function initTracks() {
   treeTab.addEventListener('click', () => {
     if (!treeBuilt) {
       treeBuilt = true;
-      treePanel.append(
-        make('p', 'tree__hint note', 'Hover a project to trace what it grew out of.'),
-        buildFamilyTree(nodes, { onOpen: open }),
+      const hint = make('p', 'tree__hint note');
+      hint.append(
+        make('span', 'tree__hint-hover', 'Hover a project to trace what it grew out of. Click to read it.'),
+        make('span', 'tree__hint-touch', 'Tap a project to read what it grew out of.'),
       );
+      treePanel.append(hint, buildFamilyTree(nodes, { onOpen: open }));
       document.dispatchEvent(new CustomEvent('fieldguide:discover', { detail: { id: 'family-tree' } }));
     }
   });

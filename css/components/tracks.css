@@ -275,3 +275,20 @@
 .tree__node.is-traced .tree__name { text-decoration: underline wavy #c39a3f 1px; text-underline-offset: .2em; }
 
 .tree__node:focus-visible { outline: 2px dashed #6a8399; outline-offset: 3px; }
+
+/* Phones: the outline layout, leaf and name side by side. */
+.tree.is-outline .tree__node {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tree.is-outline .tree__name { font-size: 1.25rem; }
+
+/* The hint matches how this visitor points. */
+.tree__hint-touch { display: none; }
+
+@media (hover: none) {
+  .tree__hint-hover { display: none; }
+  .tree__hint-touch { display: inline; }
+}

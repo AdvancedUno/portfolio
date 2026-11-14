@@ -1,7 +1,7 @@
 // family-tree.js: the project family tree, drawn from the "parents" field in projects.json.
 //
 // Layout: a pencil trunk down the left. Each lineage grows to the right as a branch, one
-// column per generation (a project sits one column right of its deepest parent). A node with
+// column per generation (on phones, an indented outline instead) (a project sits one column right of its deepest parent). A node with
 // several children keeps the first on its own row and starts a new row for each of the rest.
 // The layout is worked out in pixels from the container's width, and redrawn on resize, so
 // labels stay readable on a phone.
@@ -85,19 +85,24 @@ export function buildFamilyTree(nodes, { onOpen }) {
   const layout = () => {
     const width = root.clientWidth;
     if (!width) return;
+    // Phones get an outline: one node per row, indented by generation, with elbow connectors.
+    // Wider screens get the branching tree, one column per generation.
     const narrow = width < 560;
-    const rowH = narrow ? 112 : 92;
-    const colW = (width - TRUNK_X - 24) / columns;
-    const height = rows * rowH + 8;
+    root.classList.toggle('is-outline', narrow);
+    const rowH = narrow ? 46 : 92;
+    const colW = narrow ? 26 : (width - TRUNK_X - 24) / columns;
+    const height = (narrow ? ordered.length : rows) * rowH + 8;
     root.style.height = `${height}px`;
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     svg.replaceChildren();
     segments.clear();
 
     const pos = new Map();
-    for (const n of nodes) {
-      pos.set(n.id, { x: TRUNK_X + 24 + depth.get(n.id) * colW + colW * 0.12, y: row.get(n.id) * rowH + 26 });
-    }
+    ordered.forEach((n, i) => {
+      const x = TRUNK_X + 24 + depth.get(n.id) * colW + (narrow ? 0 : colW * 0.12);
+      const y = (narrow ? i : row.get(n.id)) * rowH + (narrow ? 22 : 26);
+      pos.set(n.id, { x, y });
+    });
 
     const pencil = (d, childId, cls = '') => {
       const p = document.createElementNS(SVG_NS, 'path');
@@ -108,9 +113,10 @@ export function buildFamilyTree(nodes, { onOpen }) {
       return p;
     };
 
-    // The trunk, with a slight hand wobble.
-    const top = pos.get(nodes.find((n) => row.get(n.id) === 0)?.id)?.y ?? 26;
-    const bottom = (rows - 1) * rowH + 26;
+    // The trunk, with a slight hand wobble, from the first root to the last.
+    const rootYs = ordered.filter((n) => !parentOf(n).length).map((n) => pos.get(n.id).y);
+    const top = Math.min(...rootYs);
+    const bottom = Math.max(...rootYs);
     pencil(`M${TRUNK_X} ${top - 14} C${TRUNK_X + 3} ${top + (bottom - top) * 0.3} ${TRUNK_X - 3} ${top + (bottom - top) * 0.7} ${TRUNK_X} ${bottom + 10}`, null, 'tree__trunk');
 
     for (const n of nodes) {
@@ -123,13 +129,18 @@ export function buildFamilyTree(nodes, { onOpen }) {
       }
       for (const parent of parents) {
         const from = pos.get(parent.id);
-        const midX = (from.x + x) / 2;
-        pencil(`M${from.x + 7} ${from.y} C${midX} ${from.y + bow} ${midX} ${y - bow} ${x - 7} ${y}`, n.id);
+        if (narrow) {
+          // Down from the parent's leaf, then a soft elbow across to the child.
+          pencil(`M${from.x} ${from.y + 8} L${from.x} ${y - 8} Q${from.x} ${y} ${from.x + 8} ${y} L${x - 8} ${y}`, n.id);
+        } else {
+          const midX = (from.x + x) / 2;
+          pencil(`M${from.x + 7} ${from.y} C${midX} ${from.y + bow} ${midX} ${y - bow} ${x - 7} ${y}`, n.id);
+        }
       }
       const button = buttons.get(n.id);
       button.style.left = `${x}px`;
       button.style.top = `${y}px`;
-      button.style.width = `${Math.max(colW * 0.86, 72)}px`;
+      button.style.width = narrow ? `${width - x - 8}px` : `${Math.max(colW * 0.86, 72)}px`;
     }
   };
 
