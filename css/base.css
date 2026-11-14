@@ -44,7 +44,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Paper grain: a fixed, tiled feTurbulence texture over everything.
+/* Paper grain: a fixed, tiled noise texture over everything (a pre-rendered fractal noise tile).
    It is a static image with plain opacity (no blend mode), so scrolling stays cheap. */
 body::after {
   content: "";
@@ -53,7 +53,7 @@ body::after {
   z-index: 1000;
   pointer-events: none;
   background-image: var(--grain-image);
-  background-size: 220px 220px;
+  background-size: 160px 160px;
   opacity: var(--grain-opacity);
 }
 
