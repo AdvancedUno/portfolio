@@ -7,6 +7,7 @@ import { initLamp } from './lib/lamp.js';
 import { initNav } from './sections/nav.js';
 import { initCover } from './sections/cover.js';
 import { initIdentification } from './sections/identification.js';
+import { initSighting } from './sections/sighting.js';
 
 // Lets CSS tell "scripts are running" apart from the plain HTML fallback.
 document.documentElement.classList.add('js');
@@ -17,3 +18,4 @@ initNav();
 initCover();
 fillPlateData();
 initIdentification();
+initSighting();

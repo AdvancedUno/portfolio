@@ -1,0 +1,122 @@
+/* plumage.css: the visitor sighting note, and the page's seasonal plumage.
+
+   sighting.js sets html[data-season] from St. Louis's month and, only for a fresh reading,
+   html[data-weather] to "rain" or "snow". Everything here is subtle and static: a tint mixed
+   into the paper, and a faint texture over the page. Nothing moves on its own. */
+
+/* ---------- Sighting note ---------- */
+
+.sighting {
+  display: grid;
+  gap: var(--space-1);
+  min-height: calc(var(--text-hand) * 2.6);
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  line-height: 1.2;
+  color: var(--ink-soft);
+}
+
+.sighting__line {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.weather-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: -.05em;   /* sits on the first line when the note wraps */
+}
+
+/* While the weather loads: a pencil line drawing itself. */
+.sighting__loading {
+  width: 9rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: pencil-draw 1.6s ease-in-out infinite;
+}
+
+@keyframes pencil-draw {
+  60%, 100% { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sighting__loading { animation: none; stroke-dashoffset: 0; opacity: .5; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sighting.is-ready { animation: sighting-in var(--dur) ease; }
+}
+
+@keyframes sighting-in {
+  from { opacity: 0; }
+}
+
+/* ---------- Seasonal tint, mixed into the paper ---------- */
+
+:root {
+  --plumage-tint: var(--paper);
+  --plumage-strength: 0%;
+  --snow: color-mix(in srgb, var(--slate) 38%, transparent);
+  --rain: color-mix(in srgb, var(--slate) 30%, transparent);
+}
+
+:root[data-season="winter"] { --plumage-tint: var(--slate); --plumage-strength: 6%; }
+:root[data-season="spring"] { --plumage-tint: var(--sage);  --plumage-strength: 5%; }
+:root[data-season="summer"] { --plumage-tint: var(--ochre); --plumage-strength: 8%; }
+:root[data-season="autumn"] { --plumage-tint: var(--rust);  --plumage-strength: 4%; }
+
+:root[data-theme="dark"] {
+  --snow: rgba(228, 232, 238, .22);
+  --rain: rgba(190, 205, 220, .2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --snow: rgba(228, 232, 238, .22);
+    --rain: rgba(190, 205, 220, .2);
+  }
+}
+
+html {
+  background-color: color-mix(in srgb, var(--paper), var(--plumage-tint) var(--plumage-strength));
+}
+
+/* ---------- Weather texture over the page ---------- */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Faint snow in winter, and a little more when it is actually snowing. */
+:root[data-season="winter"] body::before,
+:root[data-weather="snow"] body::before {
+  opacity: .6;
+  background-image:
+    radial-gradient(circle at 12% 18%, var(--snow) 0 1.3px, transparent 1.8px),
+    radial-gradient(circle at 63% 9%, var(--snow) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 37% 71%, var(--snow) 0 1.6px, transparent 2.1px),
+    radial-gradient(circle at 84% 52%, var(--snow) 0 1.1px, transparent 1.6px),
+    radial-gradient(circle at 22% 88%, var(--snow) 0 .9px, transparent 1.4px);
+  background-size: 190px 190px, 230px 230px, 170px 170px, 210px 210px, 250px 250px;
+}
+
+:root[data-weather="snow"] body::before { opacity: 1; }
+
+/* Rain streaks when it is raining: fine slanted lines, broken into dashes by a mask. */
+:root[data-weather="rain"] body::before {
+  opacity: 1;
+  background-image: repeating-linear-gradient(105deg, transparent 0 46px, var(--rain) 46px 47px);
+  -webkit-mask-image: repeating-linear-gradient(to bottom, #000 0 22px, transparent 22px 61px);
+          mask-image: repeating-linear-gradient(to bottom, #000 0 22px, transparent 22px 61px);
+}
