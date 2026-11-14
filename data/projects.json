@@ -1,0 +1,180 @@
+[
+  {
+    "id": "intelliz-image",
+    "kind": "ancestor",
+    "name": "INTELLIZ image enhancement work",
+    "summary": "TODO(uno): one line on the image enhancement work at INTELLIZ",
+    "stack": [],
+    "parents": []
+  },
+  {
+    "id": "jane-street-kaggle",
+    "kind": "ancestor",
+    "name": "Jane Street Kaggle forecasting",
+    "summary": "TODO(uno): one line on the Jane Street forecasting competition",
+    "stack": [],
+    "parents": []
+  },
+  {
+    "id": "microsoft-hackathon",
+    "kind": "ancestor",
+    "name": "Microsoft Global Hackathon",
+    "summary": "TODO(uno): one line on the hackathon project",
+    "stack": ["RAG", "MCP"],
+    "parents": []
+  },
+  {
+    "id": "jobbie",
+    "kind": "ancestor",
+    "name": "Jobbie",
+    "summary": "TODO(uno): one line on Jobbie",
+    "stack": ["Microservices"],
+    "parents": []
+  },
+  {
+    "id": "codecache",
+    "kind": "project",
+    "name": "CodeCache",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "TODO(uno): main language",
+    "stack": ["Tree-sitter", "SQLite FTS5"],
+    "summary": "Local code index served to coding agents as an MCP tool.",
+    "parents": ["microsoft-hackathon"],
+    "links": [],
+    "writeup": {
+      "problem": "TODO(uno): the problem CodeCache solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  },
+  {
+    "id": "atlas",
+    "kind": "project",
+    "name": "ATLAS",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "Python",
+    "stack": ["Python", "Redis"],
+    "summary": "Work-stealing scheduler for multi-agent LLM systems.",
+    "parents": ["hiregauge"],
+    "links": [],
+    "writeup": {
+      "problem": "TODO(uno): the problem ATLAS solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  },
+  {
+    "id": "hiregauge",
+    "kind": "project",
+    "name": "HireGauge",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "Python",
+    "stack": ["Python"],
+    "summary": "Multi-agent resume evaluation CLI.",
+    "parents": [],
+    "links": [],
+    "writeup": {
+      "problem": "TODO(uno): the problem HireGauge solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  },
+  {
+    "id": "flash-attention-cuda",
+    "kind": "project",
+    "name": "Flash Attention in CUDA",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "CUDA",
+    "stack": ["C++", "CUDA"],
+    "summary": "Fused attention kernel with tiling and online softmax.",
+    "parents": ["intelliz-image"],
+    "links": [],
+    "writeup": {
+      "problem": "TODO(uno): the problem this kernel solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  },
+  {
+    "id": "limit-order-book",
+    "kind": "project",
+    "name": "Low-latency limit order book",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "C++",
+    "stack": ["C++17"],
+    "summary": "C++17 matching engine with a lock-free ring buffer.",
+    "parents": ["jane-street-kaggle"],
+    "links": [],
+    "writeup": {
+      "problem": "TODO(uno): the problem the order book solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  },
+  {
+    "id": "crypto-arbitrage",
+    "kind": "project",
+    "name": "Real-time crypto arbitrage engine",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "TODO(uno): main language",
+    "stack": ["PySpark", "Airflow"],
+    "summary": "Arbitrage across Binance and Coinbase order books in real time.",
+    "parents": ["limit-order-book"],
+    "links": [],
+    "writeup": {
+      "problem": "TODO(uno): the problem the arbitrage engine solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  },
+  {
+    "id": "thetradingteam",
+    "kind": "project",
+    "name": "TheTradingTeam",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "Python",
+    "stack": ["Python"],
+    "summary": "Systematic trading platform with point-in-time data and validation gates.",
+    "parents": ["crypto-arbitrage"],
+    "links": [],
+    "writeup": {
+      "problem": "TODO(uno): the problem TheTradingTeam solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  },
+  {
+    "id": "torque",
+    "kind": "project",
+    "name": "Torque",
+    "repo": "TODO(uno): GitHub repo name",
+    "collected": "TODO(uno): when I built it (year or month)",
+    "habitat": "TODO(uno): main language",
+    "stack": ["React", "Microservices"],
+    "summary": "Microservices marketplace with a React frontend.",
+    "parents": ["jobbie"],
+    "links": [
+      { "label": "Live site", "url": "TODO(uno): Torque live website URL" }
+    ],
+    "writeup": {
+      "problem": "TODO(uno): the problem Torque solves",
+      "built": "TODO(uno): how I built it",
+      "hard": "TODO(uno): what was hard",
+      "next": "TODO(uno): what I would do next"
+    }
+  }
+]

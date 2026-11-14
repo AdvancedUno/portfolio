@@ -1,0 +1,8 @@
+[
+  { "id": "postcard", "label": "Opened a postcard", "section": "range" },
+  { "id": "loupe", "label": "Used the loupe", "section": "identification" },
+  { "id": "bullseye", "label": "Hit a bullseye", "section": "behavior" },
+  { "id": "violin", "label": "Played the violin recording", "section": "song" },
+  { "id": "drawer", "label": "Opened the drawer", "section": "drawer" },
+  { "id": "family-tree", "label": "Found the family tree", "section": "tracks" }
+]

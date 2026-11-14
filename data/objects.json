@@ -1,0 +1,42 @@
+[
+  {
+    "id": "challenge-coins",
+    "name": "Challenge coins",
+    "photo": null,
+    "alt": "TODO(uno): describe the photo of the challenge coins",
+    "label": "TODO(uno): confirm I have these, then a short handwritten label",
+    "story": "TODO(uno): the story behind the challenge coins"
+  },
+  {
+    "id": "aikido-belt",
+    "name": "Aikido belt",
+    "photo": null,
+    "alt": "TODO(uno): describe the photo of the aikido belt",
+    "label": "TODO(uno): confirm I have this, then a short handwritten label",
+    "story": "TODO(uno): the story behind the aikido belt"
+  },
+  {
+    "id": "violin",
+    "name": "Violin",
+    "photo": null,
+    "alt": "TODO(uno): describe the photo of the violin",
+    "label": "TODO(uno): confirm I have this, then a short handwritten label",
+    "story": "TODO(uno): the story behind the violin"
+  },
+  {
+    "id": "shuttlecock",
+    "name": "Shuttlecock",
+    "photo": null,
+    "alt": "TODO(uno): describe the photo of the shuttlecock",
+    "label": "TODO(uno): confirm I have this, then a short handwritten label",
+    "story": "TODO(uno): the story behind the shuttlecock"
+  },
+  {
+    "id": "pressed-leaf",
+    "name": "Pressed leaf",
+    "photo": null,
+    "alt": "TODO(uno): describe the photo of the pressed leaf",
+    "label": "TODO(uno): confirm I have this, then a short handwritten label",
+    "story": "TODO(uno): the story behind the pressed leaf"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "instruments": [
+    {
+      "id": "violin",
+      "name": "Violin",
+      "facts": [
+        "First chair in a school musical orchestra, 2016 to 2018",
+        "Church orchestra, 2011 to 2021"
+      ]
+    },
+    {
+      "id": "guitar",
+      "name": "Guitar",
+      "facts": []
+    }
+  ],
+  "recording": {
+    "src": "TODO(uno): violin recording file name in assets/audio/",
+    "title": "TODO(uno): what the piece is",
+    "recorded": "TODO(uno): when and where I recorded it",
+    "note": "TODO(uno): one-line handwritten note about the recording"
+  },
+  "mixtape": {
+    "taste": "Winter jazz",
+    "title": "TODO(uno): name for the mixtape J-card",
+    "albums": []
+  }
+}

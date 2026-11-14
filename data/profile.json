@@ -1,0 +1,78 @@
+{
+  "name": "EunHo Lee",
+  "nickname": "Uno",
+  "nameOrigin": "TODO(uno): where the name Uno comes from, in a sentence or two",
+  "intro": "TODO(uno): short first-person intro for the Identification section, two or three sentences",
+  "portrait": "TODO(uno): id of the portrait photo in photos.json",
+  "fieldMarks": [],
+  "currently": {
+    "reading": "TODO(uno): id of a book in books.json",
+    "listening": "TODO(uno): id of an album in music.json",
+    "building": "TODO(uno): id of a project in projects.json"
+  },
+  "education": [
+    {
+      "school": "Washington University in St. Louis",
+      "degree": "BS/MS Computer Science",
+      "place": "st-louis",
+      "start": "2025-08",
+      "end": "2027-05"
+    },
+    {
+      "school": "Denison University",
+      "degree": "BA Mathematics",
+      "place": "granville",
+      "start": "2023-01",
+      "end": "2025-05"
+    }
+  ],
+  "behavior": [
+    {
+      "id": "badminton",
+      "name": "Badminton",
+      "facts": [
+        "Team leader",
+        "5th in men's singles at the Regina city championship",
+        "Team MVP, 2018"
+      ],
+      "note": "TODO(uno): a short note about badminton, in my words"
+    },
+    {
+      "id": "soccer",
+      "name": "Soccer",
+      "facts": ["Varsity midfielder"],
+      "note": "TODO(uno): a short note about soccer, in my words"
+    },
+    {
+      "id": "aikido",
+      "name": "Aikido",
+      "facts": ["Second-degree black belt"],
+      "note": "TODO(uno): a short note about aikido, in my words"
+    },
+    {
+      "id": "darts",
+      "name": "Darts",
+      "facts": [],
+      "note": "TODO(uno): a short note about darts, in my words"
+    },
+    {
+      "id": "blackjack",
+      "name": "Blackjack",
+      "facts": ["Blackjack nights with friends"],
+      "note": "TODO(uno): a short note about blackjack nights, in my words"
+    }
+  ],
+  "dartboardFacts": [],
+  "firstSpecimen": {
+    "year": 2021,
+    "place": "Migrant Workers Welfare Society, Seoul",
+    "summary": "Volunteered teaching computer skills, and built a click game so older students could practice using a mouse before each class.",
+    "story": "TODO(uno): the story of the click game, in my words"
+  },
+  "links": {
+    "github": "https://github.com/advanceduno",
+    "linkedin": "TODO(uno): LinkedIn profile URL",
+    "kaggle": "TODO(uno): Kaggle profile URL",
+    "email": "TODO(uno): email address for the back cover mailto link"
+  }
+}
