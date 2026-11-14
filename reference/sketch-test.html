@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sketch test bench</title>
+  <meta name="description" content="Development test page for the sketch filters and the loupe in A Field Guide to Uno.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Nanum+Pen+Script&amp;family=Spectral:ital,wght@0,400;0,600;1,400&amp;display=swap">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components/sketch.css">
+  <style>
+    main { width: min(100% - 2rem, 72rem); margin: 0 auto; padding-block: 3rem 6rem; }
+    .bench { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: 3rem 2.5rem; margin-top: 2rem; }
+  </style>
+  <script type="module">
+    import { createSketch } from '../js/lib/sketch.js';
+    import { applyTilts } from '../js/lib/tilt.js';
+    const photos = await (await fetch('../data/photos.json')).json();
+    const bench = document.querySelector('.bench');
+    for (const photo of photos) bench.append(createSketch(photo, { caption: `${photo.id}, ${photo.filter}` }));
+    applyTilts();
+    document.addEventListener('fieldguide:discover', (e) => console.info('discovered', e.detail.id));
+  </script>
+</head>
+<body>
+  <main>
+    <h1>Sketch test bench</h1>
+    <p class="note">Every photo in photos.json, with its filter. Not linked from the site.</p>
+    <div class="bench"></div>
+  </main>
+</body>
+</html>
