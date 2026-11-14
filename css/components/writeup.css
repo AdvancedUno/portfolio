@@ -1,0 +1,112 @@
+/* writeup.css: a project's write-up on a sheet that unfolds from its crease. */
+
+.writeup {
+  width: min(100% - 2rem, 44rem);
+  max-height: calc(100% - 2rem);
+  padding: 0;
+  overflow: visible;
+  color: #33362f;
+  background: transparent;
+  border: 0;
+}
+
+.writeup::backdrop { background: rgba(29, 30, 26, .55); }
+
+.writeup__sheet {
+  position: relative;
+  max-height: calc(100vh - 6rem);
+  max-height: calc(100dvh - 6rem);
+  overflow-y: auto;
+  padding: var(--space-7) clamp(var(--space-5), 5vw, var(--space-8)) var(--space-7);
+  background:
+    linear-gradient(to bottom, transparent calc(50% - 1px), rgba(51, 54, 47, .07) 50%, transparent calc(50% + 6px)),
+    repeating-linear-gradient(to bottom, transparent 0 calc(1.75rem - 1px), rgba(90, 110, 130, .14) calc(1.75rem - 1px) 1.75rem),
+    #f3f1e9;
+  background-attachment: local;
+  border: 1px solid rgba(51, 54, 47, .3);
+  box-shadow: 0 30px 50px -30px rgba(0, 0, 0, .7);
+  transform-origin: top center;
+}
+
+/* Unfolding: the sheet opens down from its top edge, a crease showing as it goes. */
+@media (prefers-reduced-motion: no-preference) {
+  .writeup[open] .writeup__sheet { animation: unfold 620ms var(--ease-swing); }
+}
+
+@keyframes unfold {
+  0% { transform: perspective(1400px) rotateX(-82deg) scaleY(.5); opacity: 0; }
+  45% { opacity: 1; }
+  100% { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .writeup[open] .writeup__sheet { animation: fade-in 250ms ease; }
+}
+
+@keyframes fade-in { from { opacity: 0; } }
+
+.writeup__close {
+  position: absolute;
+  top: -2.75rem;
+  right: 0;
+  padding: .35rem .9rem;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  color: #33362f;
+  background: #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .45);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.writeup__close:focus-visible { outline: 2px dashed #f3f1e9; outline-offset: 3px; }
+
+.writeup__title {
+  font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+}
+
+.writeup__facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .2rem var(--space-4);
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+}
+
+.writeup__facts dt { color: #5d6157; }
+.writeup__facts dd { margin: 0; }
+
+.writeup__summary { margin-top: var(--space-5); font-size: 1.125rem; }
+
+.writeup__lineage {
+  margin-top: var(--space-3);
+  font-family: var(--font-hand);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: #5d6157;
+}
+
+.writeup__section { margin-top: var(--space-6); }
+
+.writeup__section h3 {
+  margin-bottom: var(--space-2);
+  font-size: 1.9rem;
+}
+
+.writeup .is-placeholder[class] { color: #5d6157; }
+
+.writeup__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-7);
+  padding: var(--space-4) 0 0;
+  list-style: none;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  border-top: 1px solid rgba(51, 54, 47, .3);
+}
+
+.writeup__links a { color: #2f4a63; }
+.writeup__links a:focus-visible { outline-color: #4a6278; }
