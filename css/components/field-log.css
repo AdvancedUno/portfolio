@@ -1,0 +1,139 @@
+/* field-log.css: dated field notes down a pencil timeline. */
+
+.log {
+  position: relative;
+  display: grid;
+  gap: calc(var(--rule-gap) * 1.5);
+  margin: calc(var(--rule-gap) * 2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The timeline: a pencil line down the date column. */
+.log::before {
+  content: "";
+  position: absolute;
+  top: .4rem;
+  bottom: .4rem;
+  left: var(--log-date-w);
+  border-left: 1.5px solid var(--pencil-faint);
+}
+
+.log {
+  --log-date-w: 7.5rem;
+}
+
+.log-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--log-date-w) 1fr;
+  max-width: none;
+}
+
+/* A tick on the timeline for each entry. */
+.log-entry::before {
+  content: "";
+  position: absolute;
+  top: .6rem;
+  left: calc(var(--log-date-w) - 5px);
+  width: 9px;
+  height: 9px;
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+}
+
+.log-entry.is-open::before { background: var(--ochre); }
+
+.log-entry__when {
+  padding-right: var(--space-5);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.log-entry__body {
+  position: relative;
+  padding-left: var(--space-6);
+  max-width: calc(var(--measure) + var(--space-6));
+}
+
+/* A small rust stamp naming the kind of entry. */
+.log-entry__kind {
+  display: inline-block;
+  margin-bottom: var(--space-1);
+  padding: 0 .45rem;
+  font-family: var(--font-label);
+  font-size: .6875rem;
+  line-height: 1.6;
+  color: var(--rust);
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  rotate: -3deg;
+  opacity: .9;
+}
+
+.log-entry__toggle {
+  display: grid;
+  gap: .1rem;
+  padding: 0;
+  color: var(--ink);
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.log-entry__role {
+  font-family: var(--font-hand);
+  font-size: var(--text-h3);
+  line-height: 1.05;
+}
+
+.log-entry__toggle:hover .log-entry__role,
+.log-entry__toggle[aria-expanded="true"] .log-entry__role {
+  text-decoration: underline wavy var(--ochre) 1px;
+  text-underline-offset: .22em;
+}
+
+.log-entry__org {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.log-entry__summary { margin-top: var(--space-1); }
+
+.log-entry__details {
+  margin-top: var(--space-3);
+  padding-left: var(--space-4);
+  border-left: 2px solid color-mix(in srgb, var(--ochre) 60%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .log-entry__details:not([hidden]) { animation: log-open var(--dur) var(--ease-out); }
+}
+
+@keyframes log-open { from { opacity: 0; translate: 0 -.25rem; } }
+
+.log-entry__links {
+  margin-top: var(--space-2);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 559.98px) {
+  .log { --log-date-w: 0rem; }
+  .log::before { left: 0; }
+  .log-entry { grid-template-columns: 1fr; }
+  .log-entry::before { left: -4px; }
+  .log-entry__when {
+    padding: 0 0 0 var(--space-5);
+    text-align: left;
+  }
+  .log-entry__body { padding-left: var(--space-5); }
+}
