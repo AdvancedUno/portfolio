@@ -29,16 +29,17 @@ const inFlight = new Map();
  * @param {string|*} [options.fallback]     A path to a saved response (resolved against the page,
  *                                          for example './data/fallback/github-codecache.json'),
  *                                          or a ready-made value to return as is.
+ * @param {object} [options.headers]        Extra request headers (for example an Authorization key).
  * @returns {Promise<{data: *, source: 'live'|'cache'|'stale'|'fallback'|'none'}>}
  */
-export async function fetchJSON(url, { ttl = 0, timeoutMs = 6000, fallback } = {}) {
+export async function fetchJSON(url, { ttl = 0, timeoutMs = 6000, fallback, headers } = {}) {
   const cached = readCache(url);
   if (cached && !isExpired(cached)) {
     return { data: cached.data, source: 'cache' };
   }
 
   try {
-    const data = await fetchShared(url, timeoutMs);
+    const data = await fetchShared(url, timeoutMs, headers);
     if (ttl > 0) writeCache(url, data, ttl);
     return { data, source: 'live' };
   } catch {
@@ -66,21 +67,21 @@ export function clearCache() {
 // ---------- internals ----------
 
 /** Join an identical request that is already in flight, or start a new one. */
-function fetchShared(url, timeoutMs) {
+function fetchShared(url, timeoutMs, headers) {
   if (inFlight.has(url)) return inFlight.get(url);
-  const request = fetchWithTimeout(url, timeoutMs).finally(() => inFlight.delete(url));
+  const request = fetchWithTimeout(url, timeoutMs, headers).finally(() => inFlight.delete(url));
   inFlight.set(url, request);
   return request;
 }
 
 /** Fetch and parse JSON, aborting after timeoutMs. Throws on network errors, non-2xx, or bad JSON. */
-async function fetchWithTimeout(url, timeoutMs) {
+async function fetchWithTimeout(url, timeoutMs, headers = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(url, {
       signal: controller.signal,
-      headers: { Accept: 'application/json' },
+      headers: { Accept: 'application/json', ...headers },
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     return await response.json();

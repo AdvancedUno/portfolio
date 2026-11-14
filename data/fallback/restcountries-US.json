@@ -1,0 +1,42 @@
+{
+  "data": {
+    "objects": [
+      {
+        "names": {
+          "common": "United States"
+        },
+        "codes": {
+          "alpha_2": "US"
+        },
+        "capitals": [
+          {
+            "name": "Washington, D.C."
+          }
+        ],
+        "flag": {
+          "description": "The flag of the United States of America is composed of thirteen equal horizontal bands of red alternating with white. A blue rectangle, bearing fifty small five-pointed white stars arranged in nine rows where rows of six stars alternate with rows of five stars, is superimposed in the canton.",
+          "url_svg": "https://flags.restcountries.com/v5/svg/us.svg"
+        },
+        "currencies": [
+          {
+            "code": "USD",
+            "name": "United States dollar",
+            "symbol": "$"
+          }
+        ],
+        "languages": [
+          {
+            "name": "English"
+          }
+        ]
+      }
+    ],
+    "meta": {
+      "total": 1,
+      "count": 1,
+      "limit": 25,
+      "offset": 0,
+      "more": false
+    }
+  }
+}

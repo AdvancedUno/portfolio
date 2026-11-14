@@ -1,0 +1,45 @@
+{
+  "data": {
+    "objects": [
+      {
+        "names": {
+          "common": "Canada"
+        },
+        "codes": {
+          "alpha_2": "CA"
+        },
+        "capitals": [
+          {
+            "name": "Ottawa"
+          }
+        ],
+        "flag": {
+          "description": "The flag of Canada is composed of a red vertical band on the hoist and fly sides and a central white square that is twice the width of the vertical bands. A large eleven-pointed red maple leaf is centered in the white square.",
+          "url_svg": "https://flags.restcountries.com/v5/svg/ca.svg"
+        },
+        "currencies": [
+          {
+            "code": "CAD",
+            "name": "Canadian dollar",
+            "symbol": "$"
+          }
+        ],
+        "languages": [
+          {
+            "name": "English"
+          },
+          {
+            "name": "French"
+          }
+        ]
+      }
+    ],
+    "meta": {
+      "total": 1,
+      "count": 1,
+      "limit": 25,
+      "offset": 0,
+      "more": false
+    }
+  }
+}

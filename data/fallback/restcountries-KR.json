@@ -1,0 +1,42 @@
+{
+  "data": {
+    "objects": [
+      {
+        "names": {
+          "common": "South Korea"
+        },
+        "codes": {
+          "alpha_2": "KR"
+        },
+        "capitals": [
+          {
+            "name": "Seoul"
+          }
+        ],
+        "flag": {
+          "description": "The flag of South Korea has a white field, at the center of which is a red and blue Taegeuk circle surrounded by four black trigrams, one in each corner.",
+          "url_svg": "https://flags.restcountries.com/v5/svg/kr.svg"
+        },
+        "currencies": [
+          {
+            "code": "KRW",
+            "name": "South Korean won",
+            "symbol": "₩"
+          }
+        ],
+        "languages": [
+          {
+            "name": "Korean"
+          }
+        ]
+      }
+    ],
+    "meta": {
+      "total": 1,
+      "count": 1,
+      "limit": 25,
+      "offset": 0,
+      "more": false
+    }
+  }
+}

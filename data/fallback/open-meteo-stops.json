@@ -1,0 +1,193 @@
+[
+  {
+    "latitude": 37.45,
+    "longitude": 127.0,
+    "generationtime_ms": 0.05829334259033203,
+    "utc_offset_seconds": 32400,
+    "timezone": "Asia/Seoul",
+    "timezone_abbreviation": "GMT+9",
+    "elevation": 62.0,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-15T04:00",
+      "interval": 900,
+      "temperature_2m": 49.6,
+      "weather_code": 3,
+      "is_day": 0
+    }
+  },
+  {
+    "latitude": 50.446796,
+    "longitude": -104.63425,
+    "generationtime_ms": 0.11277198791503906,
+    "utc_offset_seconds": -21600,
+    "timezone": "America/Regina",
+    "timezone_abbreviation": "GMT-6",
+    "elevation": 580.0,
+    "location_id": 1,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-14T13:00",
+      "interval": 900,
+      "temperature_2m": 36.6,
+      "weather_code": 3,
+      "is_day": 1
+    }
+  },
+  {
+    "latitude": 37.55,
+    "longitude": 127.0,
+    "generationtime_ms": 0.03898143768310547,
+    "utc_offset_seconds": 32400,
+    "timezone": "Asia/Seoul",
+    "timezone_abbreviation": "GMT+9",
+    "elevation": 34.0,
+    "location_id": 2,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-15T04:00",
+      "interval": 900,
+      "temperature_2m": 50.6,
+      "weather_code": 3,
+      "is_day": 0
+    }
+  },
+  {
+    "latitude": 40.076534,
+    "longitude": -82.53263,
+    "generationtime_ms": 0.11682510375976562,
+    "utc_offset_seconds": -18000,
+    "timezone": "America/New_York",
+    "timezone_abbreviation": "GMT-5",
+    "elevation": 296.0,
+    "location_id": 3,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-14T14:00",
+      "interval": 900,
+      "temperature_2m": 40.2,
+      "weather_code": 3,
+      "is_day": 1
+    }
+  },
+  {
+    "latitude": 29.767237,
+    "longitude": -95.35445,
+    "generationtime_ms": 0.13124942779541016,
+    "utc_offset_seconds": -21600,
+    "timezone": "America/Chicago",
+    "timezone_abbreviation": "GMT-6",
+    "elevation": 20.0,
+    "location_id": 4,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-14T13:00",
+      "interval": 900,
+      "temperature_2m": 62.3,
+      "weather_code": 1,
+      "is_day": 1
+    }
+  },
+  {
+    "latitude": 38.916836,
+    "longitude": -77.0195,
+    "generationtime_ms": 0.13971328735351562,
+    "utc_offset_seconds": -18000,
+    "timezone": "America/New_York",
+    "timezone_abbreviation": "GMT-5",
+    "elevation": 25.0,
+    "location_id": 5,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-14T14:00",
+      "interval": 900,
+      "temperature_2m": 49.9,
+      "weather_code": 3,
+      "is_day": 1
+    }
+  },
+  {
+    "latitude": 47.663605,
+    "longitude": -122.1064,
+    "generationtime_ms": 0.09965896606445312,
+    "utc_offset_seconds": -28800,
+    "timezone": "America/Los_Angeles",
+    "timezone_abbreviation": "GMT-8",
+    "elevation": 14.0,
+    "location_id": 6,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-14T11:00",
+      "interval": 900,
+      "temperature_2m": 54.3,
+      "weather_code": 3,
+      "is_day": 1
+    }
+  },
+  {
+    "latitude": 38.622715,
+    "longitude": -90.2129,
+    "generationtime_ms": 0.13184547424316406,
+    "utc_offset_seconds": -21600,
+    "timezone": "America/Chicago",
+    "timezone_abbreviation": "GMT-6",
+    "elevation": 145.0,
+    "location_id": 7,
+    "current_units": {
+      "time": "iso8601",
+      "interval": "seconds",
+      "temperature_2m": "°F",
+      "weather_code": "wmo code",
+      "is_day": ""
+    },
+    "current": {
+      "time": "2026-11-14T13:00",
+      "interval": 900,
+      "temperature_2m": 45.9,
+      "weather_code": 0,
+      "is_day": 1
+    }
+  }
+]
