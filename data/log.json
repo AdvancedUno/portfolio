@@ -9,7 +9,8 @@
     "end": "2026",
     "when": "Summer 2026",
     "summary": "TODO(uno): one line on what I worked on in 2026",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "washu-head-ta",
@@ -21,7 +22,8 @@
     "end": "2026",
     "when": "2026",
     "summary": "TODO(uno): which course, in one line",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "research-lock-free-lists",
@@ -33,7 +35,8 @@
     "end": "2026",
     "when": "2026",
     "summary": "TODO(uno): one line on the research",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "research-latent-communication",
@@ -45,7 +48,8 @@
     "end": "2026",
     "when": "2026",
     "summary": "TODO(uno): one line on the research",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "microsoft-2025",
@@ -57,7 +61,8 @@
     "end": "2025",
     "when": "Summer 2025",
     "summary": "TODO(uno): one line on what I worked on in 2025",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "kato-award",
@@ -69,7 +74,8 @@
     "end": "2025",
     "when": "2025",
     "summary": "TODO(uno): one line on what the award is for",
-    "details": "TODO(uno): optional, a sentence or two"
+    "details": "TODO(uno): optional, a sentence or two",
+    "links": []
   },
   {
     "id": "palantir-fellowship",
@@ -81,7 +87,8 @@
     "end": "2025-04",
     "when": "Mar to Apr 2025",
     "summary": "TODO(uno): one line on the fellowship",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "key-capture-energy",
@@ -93,7 +100,8 @@
     "end": "2025",
     "when": "2024 to 2025",
     "summary": "TODO(uno): one line on what I worked on",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "intelliz",
@@ -105,7 +113,8 @@
     "end": "2023-08",
     "when": "Nov 2021 to Aug 2023",
     "summary": "TODO(uno): one line on what I worked on",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   },
   {
     "id": "kaggle-silver-guie",
@@ -117,7 +126,13 @@
     "end": "2022",
     "when": "2022",
     "summary": "TODO(uno): one line on my approach",
-    "details": "TODO(uno): optional, a sentence or two"
+    "details": "TODO(uno): optional, a sentence or two",
+    "links": [
+      {
+        "label": "Competition code on GitHub",
+        "url": "https://github.com/advanceduno/Google-Universal-Image-Embedding-Competition"
+      }
+    ]
   },
   {
     "id": "kaggle-bronze-jane-street",
@@ -129,7 +144,8 @@
     "end": null,
     "when": "TODO(uno): year of the Jane Street bronze",
     "summary": "TODO(uno): one line on my approach",
-    "details": "TODO(uno): optional, a sentence or two"
+    "details": "TODO(uno): optional, a sentence or two",
+    "links": []
   },
   {
     "id": "katusa",
@@ -141,6 +157,7 @@
     "end": "2021",
     "when": "2019 to 2021",
     "summary": "Led a squad of 8.",
-    "details": "TODO(uno): two or three short sentences for the expanded entry"
+    "details": "TODO(uno): two or three short sentences for the expanded entry",
+    "links": []
   }
 ]

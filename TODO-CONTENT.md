@@ -30,9 +30,12 @@ Everything here is something only Uno can write or confirm. In the data files, e
 
 ## Tracks and signs (`projects.json`)
 
-- [ ] Confirm the GitHub repo name for each project: CodeCache, ATLAS, HireGauge, Flash Attention in CUDA, Low-latency limit order book, Real-time crypto arbitrage engine, TheTradingTeam, Torque
+- [ ] GitHub repo for the real-time crypto arbitrage engine (`Prediction_Arbitrage` or `Low-Latency-Pipeline`?)
+- [ ] GitHub repo for TheTradingTeam (`SystemicTrading`?)
+- [ ] GitHub repo for Torque (no repo by that name; different name or private?)
+- [ ] Check my matches: OrderBook for the order book, Jobbie_Backend and Jobbie_Frontend for Jobbie, and Google-Universal-Image-Embedding-Competition as the Kaggle silver's code
 - [ ] When each project was built (`collected`)
-- [ ] Main language for CodeCache, the crypto arbitrage engine, and Torque. Also confirm CUDA for Flash Attention (seeded from "C++, CUDA").
+- [ ] Main language for the crypto arbitrage engine and Torque (CodeCache is Rust and Flash Attention is CUDA, per GitHub)
 - [ ] Torque live site URL
 - [ ] Write-up for each project: the problem, how I built it, what was hard, what I would do next
 - [ ] Review the draft family tree (`parents`)

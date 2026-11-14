@@ -20,7 +20,10 @@
     "kind": "ancestor",
     "name": "Microsoft Global Hackathon",
     "summary": "TODO(uno): one line on the hackathon project",
-    "stack": ["RAG", "MCP"],
+    "stack": [
+      "RAG",
+      "MCP"
+    ],
     "parents": []
   },
   {
@@ -28,19 +31,36 @@
     "kind": "ancestor",
     "name": "Jobbie",
     "summary": "TODO(uno): one line on Jobbie",
-    "stack": ["Microservices"],
-    "parents": []
+    "stack": [
+      "Microservices"
+    ],
+    "parents": [],
+    "links": [
+      {
+        "label": "Backend on GitHub",
+        "url": "https://github.com/advanceduno/Jobbie_Backend"
+      },
+      {
+        "label": "Frontend on GitHub",
+        "url": "https://github.com/advanceduno/Jobbie_Frontend"
+      }
+    ]
   },
   {
     "id": "codecache",
     "kind": "project",
     "name": "CodeCache",
-    "repo": "TODO(uno): GitHub repo name",
+    "repo": "CodeCache",
     "collected": "TODO(uno): when I built it (year or month)",
-    "habitat": "TODO(uno): main language",
-    "stack": ["Tree-sitter", "SQLite FTS5"],
+    "habitat": "Rust",
+    "stack": [
+      "Tree-sitter",
+      "SQLite FTS5"
+    ],
     "summary": "Local code index served to coding agents as an MCP tool.",
-    "parents": ["microsoft-hackathon"],
+    "parents": [
+      "microsoft-hackathon"
+    ],
     "links": [],
     "writeup": {
       "problem": "TODO(uno): the problem CodeCache solves",
@@ -53,12 +73,17 @@
     "id": "atlas",
     "kind": "project",
     "name": "ATLAS",
-    "repo": "TODO(uno): GitHub repo name",
+    "repo": "ATLAS",
     "collected": "TODO(uno): when I built it (year or month)",
     "habitat": "Python",
-    "stack": ["Python", "Redis"],
+    "stack": [
+      "Python",
+      "Redis"
+    ],
     "summary": "Work-stealing scheduler for multi-agent LLM systems.",
-    "parents": ["hiregauge"],
+    "parents": [
+      "hiregauge"
+    ],
     "links": [],
     "writeup": {
       "problem": "TODO(uno): the problem ATLAS solves",
@@ -71,10 +96,12 @@
     "id": "hiregauge",
     "kind": "project",
     "name": "HireGauge",
-    "repo": "TODO(uno): GitHub repo name",
+    "repo": "HireGauge",
     "collected": "TODO(uno): when I built it (year or month)",
     "habitat": "Python",
-    "stack": ["Python"],
+    "stack": [
+      "Python"
+    ],
     "summary": "Multi-agent resume evaluation CLI.",
     "parents": [],
     "links": [],
@@ -89,12 +116,17 @@
     "id": "flash-attention-cuda",
     "kind": "project",
     "name": "Flash Attention in CUDA",
-    "repo": "TODO(uno): GitHub repo name",
+    "repo": "Flash_Attention_Using_CUDA",
     "collected": "TODO(uno): when I built it (year or month)",
     "habitat": "CUDA",
-    "stack": ["C++", "CUDA"],
+    "stack": [
+      "C++",
+      "CUDA"
+    ],
     "summary": "Fused attention kernel with tiling and online softmax.",
-    "parents": ["intelliz-image"],
+    "parents": [
+      "intelliz-image"
+    ],
     "links": [],
     "writeup": {
       "problem": "TODO(uno): the problem this kernel solves",
@@ -107,12 +139,16 @@
     "id": "limit-order-book",
     "kind": "project",
     "name": "Low-latency limit order book",
-    "repo": "TODO(uno): GitHub repo name",
+    "repo": "OrderBook",
     "collected": "TODO(uno): when I built it (year or month)",
     "habitat": "C++",
-    "stack": ["C++17"],
+    "stack": [
+      "C++17"
+    ],
     "summary": "C++17 matching engine with a lock-free ring buffer.",
-    "parents": ["jane-street-kaggle"],
+    "parents": [
+      "jane-street-kaggle"
+    ],
     "links": [],
     "writeup": {
       "problem": "TODO(uno): the problem the order book solves",
@@ -128,9 +164,14 @@
     "repo": "TODO(uno): GitHub repo name",
     "collected": "TODO(uno): when I built it (year or month)",
     "habitat": "TODO(uno): main language",
-    "stack": ["PySpark", "Airflow"],
+    "stack": [
+      "PySpark",
+      "Airflow"
+    ],
     "summary": "Arbitrage across Binance and Coinbase order books in real time.",
-    "parents": ["limit-order-book"],
+    "parents": [
+      "limit-order-book"
+    ],
     "links": [],
     "writeup": {
       "problem": "TODO(uno): the problem the arbitrage engine solves",
@@ -146,9 +187,13 @@
     "repo": "TODO(uno): GitHub repo name",
     "collected": "TODO(uno): when I built it (year or month)",
     "habitat": "Python",
-    "stack": ["Python"],
+    "stack": [
+      "Python"
+    ],
     "summary": "Systematic trading platform with point-in-time data and validation gates.",
-    "parents": ["crypto-arbitrage"],
+    "parents": [
+      "crypto-arbitrage"
+    ],
     "links": [],
     "writeup": {
       "problem": "TODO(uno): the problem TheTradingTeam solves",
@@ -164,11 +209,19 @@
     "repo": "TODO(uno): GitHub repo name",
     "collected": "TODO(uno): when I built it (year or month)",
     "habitat": "TODO(uno): main language",
-    "stack": ["React", "Microservices"],
+    "stack": [
+      "React",
+      "Microservices"
+    ],
     "summary": "Microservices marketplace with a React frontend.",
-    "parents": ["jobbie"],
+    "parents": [
+      "jobbie"
+    ],
     "links": [
-      { "label": "Live site", "url": "TODO(uno): Torque live website URL" }
+      {
+        "label": "Live site",
+        "url": "TODO(uno): Torque live website URL"
+      }
     ],
     "writeup": {
       "problem": "TODO(uno): the problem Torque solves",

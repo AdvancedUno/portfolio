@@ -43,13 +43,13 @@ Two kinds of node share the file, because the family tree needs both:
   - `habitat` is the main language.
   - `links` is `{ label, url }[]`.
   - `writeup` is `{ problem, built, hard, next }`.
-- `kind: "ancestor"`: earlier work that led to a project but is not shown as a specimen. `{ id, name, summary, stack[], parents[] }`.
+- `kind: "ancestor"`: earlier work that led to a project but is not shown as a specimen. `{ id, name, summary, stack[], parents[], links? }`.
 
 `parents` holds ids of other nodes in this file.
 
 ## log.json
 
-`{ id, kind, title, org, place, start, end, when, summary, details }[]`. `kind` is `work`, `teaching`, `research`, `service`, or `award`. Shown newest first.
+`{ id, kind, title, org, place, start, end, when, summary, details, links }[]`. `kind` is `work`, `teaching`, `research`, `service`, or `award`. `links` is `{ label, url }[]`. Shown newest first; entries with no start date go last.
 
 ## music.json
 
