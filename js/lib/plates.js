@@ -1,10 +1,9 @@
 // plates.js: fills in the typewritten data line on each plate's specimen card,
 // counted from the local data files. Placeholder values (TODO(uno) strings, nulls)
 // are skipped, so a label only ever states what the data actually says.
-// These are local files, not external APIs, so they do not go through api.js.
 
-const isTodo = (value) => typeof value === 'string' && value.startsWith('TODO(uno)');
-const known = (value) => value !== null && value !== undefined && !isTodo(value);
+import { loadData as load } from './data.js';
+import { isTodo, known } from './content.js';
 
 const plural = (n, one, many = `${one}s`) => `${n} ${n === 1 ? one : many}`;
 
@@ -56,18 +55,6 @@ const LINES = {
     return behaviors.length ? plural(behaviors.length, 'sport or game', 'sports and games') : '';
   },
 };
-
-// Each data file is fetched once, however many plates read it.
-const files = new Map();
-function load(name) {
-  if (!files.has(name)) {
-    files.set(name, fetch(`./data/${name}.json`).then((r) => {
-      if (!r.ok) throw new Error(`${name}.json: HTTP ${r.status}`);
-      return r.json();
-    }));
-  }
-  return files.get(name);
-}
 
 /** Fill every [data-plate-data] element. A plate whose data fails to load keeps a blank field. */
 export async function fillPlateData() {
