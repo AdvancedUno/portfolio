@@ -14,6 +14,7 @@ import { REST_COUNTRIES_KEY } from '../config.js';
 import { fromRoot, loadData } from './data.js';
 import { fillText, known, make } from './content.js';
 import { describeWeather, formatTemperature, weatherIcon } from './weather.js';
+import { discover } from './discover.js';
 
 const COUNTRY_FIELDS = 'names.common,codes.alpha_2,capitals.name,languages.name,currencies.name,currencies.symbol,currencies.code,flag.url_svg,flag.description';
 // world-atlas uses ISO 3166 numeric ids for countries.
@@ -39,7 +40,7 @@ export async function openPostcard(stop, { trigger, world } = {}) {
 
   if (!discovered) {
     discovered = true;
-    document.dispatchEvent(new CustomEvent('fieldguide:discover', { detail: { id: 'postcard' } }));
+    discover('postcard');
   }
 }
 

@@ -8,6 +8,8 @@
 //   Keyboard:     focus the sketch, L toggles a centered loupe, arrows move it, Esc puts it away.
 // The first use anywhere announces a "loupe" discovery for the life list.
 
+import { discover } from './discover.js';
+
 const HOLD_MS = 300;
 const MOVE_TOLERANCE = 10;   // px a finger may drift before a hold counts as a scroll instead
 const KEY_STEP = 0.04;       // arrow keys move 4% of the sketch (12% with Shift)
@@ -16,7 +18,7 @@ let discovered = false;
 function announceDiscovery() {
   if (discovered) return;
   discovered = true;
-  document.dispatchEvent(new CustomEvent('fieldguide:discover', { detail: { id: 'loupe' } }));
+  discover('loupe');
 }
 
 /** Give one sketch figure its loupe. */

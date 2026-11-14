@@ -13,6 +13,7 @@ import { applyTilts } from '../lib/tilt.js';
 import { repoTracks, timeAgo, languageStrokes, canonical, isHabitat } from '../lib/github.js';
 import { openWriteup } from '../lib/writeup.js';
 import { buildFamilyTree } from '../lib/family-tree.js';
+import { discover } from '../lib/discover.js';
 
 export async function initTracks() {
   const plate = document.getElementById('tracks');
@@ -117,7 +118,7 @@ export async function initTracks() {
         make('span', 'tree__hint-touch', 'Tap a project to read what it grew out of.'),
       );
       treePanel.append(hint, buildFamilyTree(nodes, { onOpen: open }));
-      document.dispatchEvent(new CustomEvent('fieldguide:discover', { detail: { id: 'family-tree' } }));
+      discover('family-tree');
     }
   });
 }

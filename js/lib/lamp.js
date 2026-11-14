@@ -3,6 +3,8 @@
 // the choice is remembered in localStorage. A tiny inline script in <head> applies the
 // saved choice before first paint, so there is no flash of the wrong theme.
 
+import { discover } from './discover.js';
+
 const KEY = 'fieldguide:theme';
 const root = document.documentElement;
 const systemDark = matchMedia('(prefers-color-scheme: dark)');
@@ -33,6 +35,7 @@ export function initLamp(button) {
     void button.offsetWidth;
     button.classList.add('is-pulled');
     render();
+    if (root.dataset.theme === 'dark') discover('lamp');
   });
 
   systemDark.addEventListener('change', render);

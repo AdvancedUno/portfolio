@@ -4,6 +4,7 @@
 
 import { fillText, known, make } from './content.js';
 import { timeAgo } from './github.js';
+import { discover } from './discover.js';
 
 let dialog;
 let returnFocusTo = null;
@@ -20,6 +21,7 @@ export function openWriteup(node, { byId, tracks, owner, trigger }) {
   dialog.showModal();
   sheet.scrollTop = 0;
   dialog.querySelector('.writeup__close').focus();
+  discover('writeup');
 }
 
 function buildDialog() {

@@ -5,6 +5,7 @@
 
 import { loadData } from '../lib/data.js';
 import { fillText, known, make } from '../lib/content.js';
+import { discover } from '../lib/discover.js';
 
 /**
  * A date as a number for sorting: "2025-03" -> 2025.17. A bare year means the start of it,
@@ -74,6 +75,7 @@ export async function initFieldLog() {
       button.setAttribute('aria-expanded', String(open));
       details.hidden = !open;
       li.classList.toggle('is-open', open);
+      if (open) discover('field-note');
     });
 
     body.append(stamp, h3, summary, details);

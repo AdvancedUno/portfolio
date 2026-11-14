@@ -10,6 +10,7 @@ import { loadData } from '../lib/data.js';
 import { createSketch } from '../lib/sketch.js';
 import { fillText, formatMonth, known, make } from '../lib/content.js';
 import { tiltFor } from '../lib/tilt.js';
+import { discover } from '../lib/discover.js';
 
 const wide = matchMedia('(min-width: 1024px)');
 
@@ -81,6 +82,7 @@ function buildSpecimen(photo, marks) {
     item.button.setAttribute('aria-expanded', String(on));
     item.dot.classList.toggle('is-active', on);
     item.path.classList.toggle('is-active', on);
+    if (on) discover('field-mark');
   };
   const render = (previewed = null) => {
     for (const item of items) show(item, item === pinned || item === previewed);
