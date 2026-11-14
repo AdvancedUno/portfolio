@@ -294,10 +294,12 @@ function wireProgress(ui, route, lived, pins) {
   const { slider } = ui;
   slider.max = String(Math.max(lived.length - 1, 0));
 
-  // Year ticks under the slider: the first year of each stop that has one.
+  // Year ticks under the slider: the first year of each stop, once per year.
+  let lastYear = null;
   lived.forEach((stop, i) => {
     const year = /^\d{4}/.exec(stop.from ?? '')?.[0];
-    if (!year) return;
+    if (!year || year === lastYear) return;
+    lastYear = year;
     const tick = make('span', 'range__tick', year);
     tick.style.left = `${(i / Math.max(lived.length - 1, 1)) * 100}%`;
     ui.ticks.append(tick);
