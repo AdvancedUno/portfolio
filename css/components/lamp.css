@@ -1,0 +1,61 @@
+/* lamp.css: the desk lamp switch in the top-right corner. */
+
+.lamp {
+  position: fixed;
+  top: var(--space-2);
+  right: var(--space-2);
+  z-index: 60;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.lamp svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.lamp .line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lamp .shade { fill: var(--paper); }
+
+/* The pool of light on the desk, only while the lamp is on. */
+.lamp .glow {
+  fill: var(--ochre);
+  opacity: 0;
+  transition: opacity var(--dur) ease;
+}
+
+.lamp.is-on .glow { opacity: .28; }
+
+.lamp .chain {
+  transform-box: fill-box;
+  transform-origin: top;
+}
+
+.lamp.is-pulled .chain { animation: lamp-pull 420ms var(--ease-out); }
+
+@keyframes lamp-pull {
+  35% { transform: translateY(22%); }
+  100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lamp.is-pulled .chain { animation: none; }
+}
+
+/* Under 720px the index lives in the bottom bar, so the lamp can sit a little smaller. */
+@media (max-width: 719.98px) {
+  .lamp { width: 3rem; height: 3rem; }
+}

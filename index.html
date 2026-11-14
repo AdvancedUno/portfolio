@@ -28,11 +28,39 @@
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/components/cover.css">
   <link rel="stylesheet" href="./css/components/plate.css">
+  <link rel="stylesheet" href="./css/components/lamp.css">
 
+  <!-- Runs before first paint: apply the saved lamp choice, so the page never flashes the wrong theme. -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      try {
+        var theme = localStorage.getItem('fieldguide:theme');
+        if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+      } catch (e) { /* storage blocked: follow the system */ }
+    })();
+  </script>
   <script type="module" src="./js/app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#identification">Skip to the field guide</a>
+
+  <button class="lamp" type="button">
+    <span class="lamp__label visually-hidden">Turn the lamp off (dark mode)</span>
+    <svg viewBox="0 0 56 56" aria-hidden="true" focusable="false">
+      <path class="glow" d="M30.4 24.1c4.9 1 10.5-.3 14.3-3.3L55 51H24Z"/>
+      <path class="line" d="M7.5 51h18"/>
+      <path class="line" d="M10 51c.6-2.3 2.4-3.4 6.6-3.4s6.2 1.1 6.7 3.4"/>
+      <path class="line" d="M16.6 47.6 11.2 27.8"/>
+      <path class="line" d="M11.2 27.8 26.4 13.6"/>
+      <circle class="line" cx="11.2" cy="27.8" r="1.7"/>
+      <path class="line shade" d="M24.6 10.2 33.4 5.4l11.3 15.4c-3.8 3-9.4 4.3-14.3 3.3Z"/>
+      <g class="chain">
+        <path class="line" d="M40.8 22.4v9.2"/>
+        <circle class="line" cx="40.8" cy="33.2" r="1.5"/>
+      </g>
+    </svg>
+  </button>
 
   <!-- The cover: title, species label, and a contents page. Phase 1 turns it into the notebook that opens. -->
   <header id="cover" class="cover">
