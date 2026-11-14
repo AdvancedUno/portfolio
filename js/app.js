@@ -9,6 +9,7 @@ import { initCover } from './sections/cover.js';
 import { initIdentification } from './sections/identification.js';
 import { initSighting } from './sections/sighting.js';
 import { initBackCover } from './sections/back-cover.js';
+import { initRange } from './sections/range.js';
 
 // Lets CSS tell "scripts are running" apart from the plain HTML fallback.
 document.documentElement.classList.add('js');
@@ -21,3 +22,4 @@ fillPlateData();
 initIdentification();
 initSighting();
 initBackCover();
+initRange();
