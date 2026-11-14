@@ -1,7 +1,7 @@
 /* plate.css: each section is a numbered field guide plate.
 
    Small screens: the margin (numeral, note, scale bar) sits above the body.
-   From 1024px:   [ margin column | rust margin rule | body | free gutter for index tabs ]
+   From 1024px:   [ margin column | rust margin rule | body ]   (the index tabs get room from body padding)
 
    Vertical spacing uses multiples of --rule-gap so the plates keep time with the
    ruled lines on the paper. */
@@ -178,7 +178,7 @@
 
 @media (min-width: 1024px) {
   .plate {
-    grid-template-columns: var(--margin-col) minmax(0, 1fr) var(--tab-gutter);
+    grid-template-columns: var(--margin-col) minmax(0, 1fr);
     gap: 0;
   }
 

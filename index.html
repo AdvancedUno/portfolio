@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="./css/components/cover.css">
   <link rel="stylesheet" href="./css/components/plate.css">
   <link rel="stylesheet" href="./css/components/lamp.css">
+  <link rel="stylesheet" href="./css/components/tabs.css">
 
   <!-- Runs before first paint: apply the saved lamp choice, so the page never flashes the wrong theme. -->
   <script>
@@ -43,7 +44,62 @@
   <script type="module" src="./js/app.js"></script>
 </head>
 <body>
+  <!-- Pencil icons, drawn once and reused by the index tabs and the cover stickers. -->
+  <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="i-cover" viewBox="0 0 24 24"><path d="M5.5 4.2h9.8a3 3 0 0 1 3 3v13.3H8.6a3.1 3.1 0 0 1-3.1-3.1Z"/><path d="M5.6 17.3a3.1 3.1 0 0 1 3-3h9.6"/></symbol>
+    <symbol id="i-identification" viewBox="0 0 24 24"><circle cx="7" cy="16" r="3.6"/><circle cx="17" cy="16" r="3.6"/><path d="M4.1 13.9 6 6.2h3.2l.9 7.6M19.9 13.9 18 6.2h-3.2l-.9 7.6M10.4 15.4h3.2"/></symbol>
+    <symbol id="i-range" viewBox="0 0 24 24"><path d="M12 21.2s-6-5.4-6-10.2a6 6 0 0 1 12 0c0 4.8-6 10.2-6 10.2Z"/><circle cx="12" cy="11" r="2.2"/></symbol>
+    <symbol id="i-tracks" viewBox="0 0 24 24"><path d="M12 20.5v-8.6M12 11.9 7.2 5.6M12 11.9V3.8M12 11.9l4.8-6.3M12 16.4l-2.6 2.6"/></symbol>
+    <symbol id="i-field-log" viewBox="0 0 24 24"><path d="M5.4 3.6h12.4a.9.9 0 0 1 .9.9v15.2a.9.9 0 0 1-.9.9H5.4Z"/><path d="M8.8 8h6.8M8.8 11.6h6.8M8.8 15.2h4.4"/></symbol>
+    <symbol id="i-drawer" viewBox="0 0 24 24"><path d="M3.6 6.4h16.8v11.4H3.6Z"/><path d="M9.6 12h4.8"/><path d="M5 17.8v1.6M19 17.8v1.6"/></symbol>
+    <symbol id="i-song" viewBox="0 0 24 24"><path d="M9.2 17.6V6.2l9.6-2v11.6"/><circle cx="7" cy="17.8" r="2.3"/><circle cx="16.6" cy="15.8" r="2.3"/></symbol>
+    <symbol id="i-behavior" viewBox="0 0 24 24"><path d="M3.6 20.4 14.6 9.4"/><path d="m14.6 9.4 1.2-5.2 4 4Z"/><path d="m3.6 20.4.6-2.4 1.8 1.8Z"/></symbol>
+    <symbol id="i-habitat" viewBox="0 0 24 24"><path d="M5.8 19.8c-.2-8 4.2-13.3 13.4-15.2-.8 8.4-5.4 13.6-13.4 15.2Z"/><path d="m5.8 19.8 8-8.4M10 15.4l-.6-3.2M12.6 12.6l2.8.4"/></symbol>
+    <symbol id="i-back-cover" viewBox="0 0 24 24"><path d="M3.6 6.4h16.8v11.4H3.6Z"/><path d="m4 7 8 6.2L20 7"/></symbol>
+  </svg>
+
   <a class="skip-link" href="#identification">Skip to the field guide</a>
+
+  <button class="index-button" type="button" data-open-index aria-label="Index and keyboard shortcuts" aria-haspopup="dialog">?</button>
+
+  <nav class="tabs" aria-label="Index tabs">
+    <ol>
+      <li><a href="#cover"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cover"/></svg><span class="tab__label">Contents</span></a></li>
+      <li><a href="#identification"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-identification"/></svg><span class="tab__label">Identification</span></a></li>
+      <li><a href="#range"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-range"/></svg><span class="tab__label">Range and migration</span></a></li>
+      <li><a href="#tracks"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tracks"/></svg><span class="tab__label">Tracks and signs</span></a></li>
+      <li><a href="#field-log"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-field-log"/></svg><span class="tab__label">Field log</span></a></li>
+      <li><a href="#drawer"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-drawer"/></svg><span class="tab__label">Specimen drawer</span></a></li>
+      <li><a href="#song"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-song"/></svg><span class="tab__label">Song and call</span></a></li>
+      <li><a href="#behavior"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-behavior"/></svg><span class="tab__label">Behavior</span></a></li>
+      <li><a href="#habitat"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-habitat"/></svg><span class="tab__label">Habitat</span></a></li>
+      <li><a href="#back-cover"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-back-cover"/></svg><span class="tab__label">Back cover</span></a></li>
+    </ol>
+  </nav>
+
+  <dialog id="index-dialog" class="index-dialog" aria-labelledby="index-dialog-title">
+    <button type="button" data-close>Close</button>
+    <h2 id="index-dialog-title">Index</h2>
+    <ol>
+      <li><a href="#cover"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-cover"/></svg>Contents</a></li>
+      <li><a href="#identification"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-identification"/></svg>Identification</a></li>
+      <li><a href="#range"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-range"/></svg>Range and migration</a></li>
+      <li><a href="#tracks"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-tracks"/></svg>Tracks and signs</a></li>
+      <li><a href="#field-log"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-field-log"/></svg>Field log</a></li>
+      <li><a href="#drawer"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-drawer"/></svg>Specimen drawer</a></li>
+      <li><a href="#song"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-song"/></svg>Song and call</a></li>
+      <li><a href="#behavior"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-behavior"/></svg>Behavior</a></li>
+      <li><a href="#habitat"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-habitat"/></svg>Habitat</a></li>
+      <li><a href="#back-cover"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-back-cover"/></svg>Back cover</a></li>
+    </ol>
+    <h3>Keyboard</h3>
+    <dl class="shortcuts">
+      <dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous or next section</dd>
+      <dt><kbd>?</kbd></dt><dd>Open this index</dd>
+      <dt><kbd>L</kbd></dt><dd>Loupe on a focused sketch, then arrow keys to move it</dd>
+      <dt><kbd>Esc</kbd></dt><dd>Close this index, or put the loupe away</dd>
+    </dl>
+  </dialog>
 
   <button class="lamp" type="button">
     <span class="lamp__label visually-hidden">Turn the lamp off (dark mode)</span>

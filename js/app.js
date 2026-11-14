@@ -4,10 +4,12 @@
 import { applyTilts } from './lib/tilt.js';
 import { fillPlateData } from './lib/plates.js';
 import { initLamp } from './lib/lamp.js';
+import { initNav } from './sections/nav.js';
 
 // Lets CSS tell "scripts are running" apart from the plain HTML fallback.
 document.documentElement.classList.add('js');
 
 initLamp(document.querySelector('.lamp'));
+initNav();
 applyTilts();
 fillPlateData();

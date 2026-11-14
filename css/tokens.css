@@ -64,7 +64,14 @@
   --gutter:  clamp(1rem, .5rem + 3vw, 3rem);
   --page-width: 80rem;               /* cover, plates, back cover */
   --margin-col: 14rem;               /* plate margin column, from 1024px up */
-  --tab-gutter: 5rem;                /* kept free on the right for the Phase 1 index tabs */
+  --tabs-w: 3.25rem;                 /* room kept on the right for the index tabs, from 720px */
+  --bar-h: 3.5rem;                   /* the bottom bar that replaces the tabs under 720px */
+
+  /* The notebook cover: kraft board and its elastic band, mixed from the palette. */
+  --kraft: color-mix(in srgb, color-mix(in srgb, #c39a3f 62%, #8f4632) 84%, #33362f);
+  --kraft-edge: color-mix(in srgb, var(--kraft) 70%, #33362f);
+  --band: #2b2d27;
+  --brass: color-mix(in srgb, #c39a3f 78%, #33362f);  /* the loupe rim */
 
   /* Ruled lines line up with body text. */
   --rule-gap: calc(var(--text-base) * var(--leading));
