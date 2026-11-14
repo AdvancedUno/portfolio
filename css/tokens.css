@@ -1,0 +1,120 @@
+/* tokens.css: design tokens. Every color, size, and timing the site uses starts here.
+   Light is the default. Dark is "lamp off": a dark desk, light text, and sketches
+   that stay on a light sheet so the pencil and watercolor filters still read.
+
+   Theme resolution:
+   - No choice saved: follow prefers-color-scheme.
+   - data-theme="light" or "dark" on <html> (set by the desk lamp, Phase 1): wins. */
+
+:root {
+  color-scheme: light;
+
+  /* Color: from the brief */
+  --paper:    #f3f1e9;               /* page */
+  --sheet:    #f3f1e9;               /* surfaces images sit on */
+  --ink:      #33362f;               /* text, pencil */
+  --ink-soft: #5d6157;               /* secondary text */
+  --sage:     #8fa58a;               /* watercolor wash, tape */
+  --ochre:    #c39a3f;               /* watercolor wash, highlights */
+  --slate:    #6a8399;               /* watercolor wash, links, focus */
+  --rust:     #8f4632;               /* stamps, postmarks, small accents only */
+  --rule:     rgba(90, 110, 130, .16); /* ruled lines */
+
+  /* Color: derived, for contrast.
+     --slate is only 3.5:1 on paper, which is fine for focus outlines and washes
+     but fails WCAG AA for text, so link text uses a deeper slate. */
+  --link:      #4a6278;              /* 5.6:1 on paper */
+  --sheet-ink: #33362f;              /* text that sits on --sheet (labels on sketches) */
+  --focus:     var(--slate);
+
+  /* Paper grain overlay (see base.css). Dark specks on light paper. */
+  --grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2  0 0 0 0 .21  0 0 0 0 .18  1.4 0 0 0 -.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --grain-opacity: .55;
+
+  /* Typography. --font-hand will later point at Uno's own Calligraphr font. */
+  --font-hand:  "Nanum Pen Script", "Segoe Print", "Bradley Hand", "Chalkboard SE", cursive;
+  --font-body:  "Spectral", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-label: "Courier Prime", "Courier New", Courier, monospace;
+
+  /* Type scale. Body is fixed at 1.0625rem; headings grow with the viewport.
+     The handwriting face has a small x-height, so hand sizes run large. */
+  --text-xs:   .8125rem;
+  --text-sm:   .9375rem;
+  --text-base: 1.0625rem;
+  --text-hand: clamp(1.5rem, 1.3rem + .6vw, 1.875rem);   /* short notes */
+  --text-h3:   clamp(1.75rem, 1.5rem + .9vw, 2.25rem);
+  --text-h2:   clamp(2.5rem, 2rem + 2vw, 3.75rem);
+  --text-h1:   clamp(3.5rem, 2.4rem + 5vw, 7rem);
+  --leading:   1.65;
+  --leading-tight: 1.1;
+  --measure:   66ch;                 /* keeps lines under 70 characters */
+
+  /* Spacing: a simple doubling-ish scale. */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --gutter:  clamp(1rem, .5rem + 3vw, 3rem);
+  --content-width: 68rem;
+
+  /* Ruled lines line up with body text. */
+  --rule-gap: calc(var(--text-base) * var(--leading));
+
+  /* Placed objects get a seeded tilt between these bounds (applied per element as --tilt). */
+  --tilt-min: -2.5deg;
+  --tilt-max:  2.5deg;
+
+  /* Motion. Motion answers user actions; reduced motion zeroes these (base.css). */
+  --dur-quick: 160ms;
+  --dur:       320ms;
+  --dur-slow:  900ms;                /* the cover opening */
+  --ease-out:  cubic-bezier(.2, .7, .2, 1);
+  --ease-swing: cubic-bezier(.6, .05, .25, 1);
+
+  /* Breakpoint reference (CSS cannot use variables in media queries):
+     nav becomes a bottom bar under 720px. */
+}
+
+/* Lamp off, chosen explicitly. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:    #22231f;
+  --sheet:    #e6e2d6;
+  --ink:      #e4e0d3;
+  --ink-soft: #b3b0a3;               /* 7.3:1 on dark paper */
+  --sage:     #9db598;
+  --ochre:    #d2ab55;
+  --slate:    #8ea6bb;
+  --rust:     #b5654d;
+  --rule:     rgba(228, 224, 211, .07);
+  --link:     #9db7cc;
+  --sheet-ink: #33362f;
+  --grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .89  0 0 0 0 .88  0 0 0 0 .83  1.4 0 0 0 -.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --grain-opacity: .35;
+}
+
+/* Lamp off by system preference, unless the visitor switched the lamp on.
+   These values must match the block above. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper:    #22231f;
+    --sheet:    #e6e2d6;
+    --ink:      #e4e0d3;
+    --ink-soft: #b3b0a3;
+    --sage:     #9db598;
+    --ochre:    #d2ab55;
+    --slate:    #8ea6bb;
+    --rust:     #b5654d;
+    --rule:     rgba(228, 224, 211, .07);
+    --link:     #9db7cc;
+    --sheet-ink: #33362f;
+    --grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .89  0 0 0 0 .88  0 0 0 0 .83  1.4 0 0 0 -.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    --grain-opacity: .35;
+  }
+}

@@ -1,0 +1,216 @@
+/* base.css: the paper, the type, and the page layout.
+   Component styles live in css/components/, one file each. */
+
+/* ---------- Reset, kept small ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body, h1, h2, h3, h4, p, figure, blockquote, ol, ul, dl, dd { margin: 0; }
+
+img, svg, video, canvas { display: block; max-width: 100%; }
+img { height: auto; }
+
+button, input, select { font: inherit; color: inherit; }
+
+[hidden] { display: none !important; }
+
+/* ---------- The paper ---------- */
+
+html {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  font-size: var(--text-base);
+  line-height: var(--leading);
+  /* Faint ruled lines, spaced to match the body line height. */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(var(--rule-gap) - 1px),
+    var(--rule) calc(var(--rule-gap) - 1px) var(--rule-gap)
+  );
+  background-position: 0 var(--space-7);
+  text-rendering: optimizeLegibility;
+}
+
+/* Paper grain: a fixed, tiled feTurbulence texture over everything.
+   It is a static image with plain opacity (no blend mode), so scrolling stays cheap. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background-image: var(--grain-image);
+  background-size: 220px 220px;
+  opacity: var(--grain-opacity);
+}
+
+/* ---------- Type ---------- */
+
+h1, h2, h3 {
+  font-family: var(--font-hand);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+p, li, dd { max-width: var(--measure); }
+p { text-wrap: pretty; }
+
+/* Handwritten notes: one or two lines at most, never paragraphs. */
+.note {
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  line-height: 1.2;
+  color: var(--ink-soft);
+}
+
+/* Typewritten specimen labels and dates. Used sparingly. */
+.label,
+.specimen-label,
+time {
+  font-family: var(--font-label);
+}
+
+.specimen-label {
+  --tilt: -1.2deg;
+  position: relative;
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--sheet-ink);
+  background: var(--sheet);
+  border: 1px solid color-mix(in srgb, var(--sheet-ink) 35%, transparent);
+  transform: rotate(var(--tilt));
+}
+
+/* A strip of paper tape holding the label down. Torn ends come from the clip-path. */
+.specimen-label::before {
+  content: "";
+  position: absolute;
+  top: -.7rem;
+  left: 50%;
+  width: 4.5rem;
+  height: 1.3rem;
+  translate: -50% 0;
+  rotate: 4deg;
+  background: color-mix(in srgb, var(--sage) 55%, transparent);
+  clip-path: polygon(
+    0 8%, 6% 0, 12% 10%, 18% 2%, 25% 8%, 100% 0, 96% 20%, 100% 38%, 95% 55%, 100% 74%,
+    96% 100%, 88% 92%, 80% 100%, 72% 93%, 0 100%, 4% 80%, 0 62%, 5% 44%, 0 26%
+  );
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+}
+
+a:hover { text-decoration-thickness: 2px; }
+
+/* ---------- Focus and accessibility helpers ---------- */
+
+:focus-visible {
+  outline: 2px dashed var(--focus);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 1001;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  color: var(--sheet-ink);
+  background: var(--sheet);
+  translate: 0 -200%;
+}
+
+.skip-link:focus { translate: 0 0; }
+
+/* ---------- Layout ---------- */
+
+.section {
+  width: min(100% - 2 * var(--gutter), var(--content-width));
+  margin-inline: auto;
+  padding-block: var(--space-8);
+  scroll-margin-top: var(--space-6);
+}
+
+/* A pencil underline under each section heading. It is a mask, so it takes the ink color in both themes. */
+.section > h2::after {
+  content: "";
+  display: block;
+  width: min(14rem, 70%);
+  height: .55rem;
+  margin-top: var(--space-2);
+  background: currentColor;
+  opacity: .55;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6.2C30 4.1 52 7.4 81 5.3s58-2.6 85 .4c12 1.3 22 .2 32-1.4' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M9 7.6c34-1.8 70-.9 104-2.3' fill='none' stroke='%23000' stroke-width='.8' stroke-linecap='round' opacity='.6'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6.2C30 4.1 52 7.4 81 5.3s58-2.6 85 .4c12 1.3 22 .2 32-1.4' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M9 7.6c34-1.8 70-.9 104-2.3' fill='none' stroke='%23000' stroke-width='.8' stroke-linecap='round' opacity='.6'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
+
+.section > h2 + * { margin-top: var(--space-5); }
+
+/* Placeholder index until the real index tabs arrive in Phase 1. */
+.index-tabs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  width: min(100% - 2 * var(--gutter), var(--content-width));
+  margin: 0 auto;
+  padding: var(--space-4) 0 0;
+  list-style: none;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+}
+
+/* The cover placeholder: title and a taped specimen label. Phase 1 turns this into the notebook. */
+.section--cover {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-7);
+  min-height: 80vh;
+  min-height: 80svh;
+  text-align: center;
+}
+
+.site-footer .section { padding-bottom: var(--space-9); }
+
+/* ---------- Reduced motion ----------
+   No blanket "kill all transitions" rule: the brief swaps page turns, flips, and route
+   drawing for fades, and fades still need their durations. Each component handles
+   prefers-reduced-motion itself. Smooth scrolling is already opt-in above. */
