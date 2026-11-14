@@ -1,0 +1,182 @@
+/* behavior.css: sports notes, the pencil dartboard, and the chalk scoreboard.
+   The board sits on the light sheet in both themes, so its inks are fixed. */
+
+.behavior {
+  display: grid;
+  gap: calc(var(--rule-gap) * 2);
+  margin-top: calc(var(--rule-gap) * 2);
+}
+
+/* ---------- Notes ---------- */
+
+.behavior__notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-5) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.behavior__note { max-width: none; }
+
+.behavior__note h3 { font-size: 1.9rem; }
+
+.behavior__facts {
+  margin: var(--space-1) 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.behavior__facts li::before { content: "- "; }
+
+/* ---------- Dartboard ---------- */
+
+.darts {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 1100px) {
+  .darts { grid-template-columns: minmax(0, 1.25fr) minmax(14rem, 1fr); }
+}
+
+.darts__stage {
+  position: relative;
+  max-width: 30rem;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.darts__board {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #f3f1e9;
+  border-radius: 4px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.darts__board .surround { fill: #e3ddcc; stroke: #33362f; stroke-width: 1.4; }
+.darts__board .bed--dark { fill: url(#graphite); }
+.darts__board .bed--light { fill: #efe8d4; }
+.darts__board .ring--rust { fill: #a8573f; }
+.darts__board .ring--sage { fill: #7f9a7a; }
+.darts__board .bed,
+.darts__board .ring { stroke: #2b2d27; stroke-width: .7; }
+.darts__board .wire { fill: none; stroke: #2b2d27; stroke-width: 1.2; }
+
+.darts__board .number {
+  font-family: var(--font-hand);
+  font-size: 19px;
+  fill: #33362f;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.darts__oche {
+  stroke: #33362f;
+  stroke-width: 1.4;
+  stroke-dasharray: 2 5;
+  stroke-linecap: round;
+}
+
+.darts__band {
+  stroke: #8f4632;
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+
+/* Darts: brass barrel, graphite shaft, ochre flights. */
+.dart__tip { fill: #6b6d65; }
+.dart__barrel { fill: #b88a3c; stroke: #33362f; stroke-width: .8; }
+.dart__shaft { fill: #33362f; }
+.dart__flight { fill: #c39a3f; stroke: #33362f; stroke-width: .8; stroke-linejoin: round; }
+
+.darts__stuck-dart { filter: drop-shadow(1px 2px 0 rgba(0, 0, 0, .25)); }
+
+/* The pull pad: the lower part of the stage, where the waiting dart sits. Touch here does
+   not scroll the page, so a pull is a pull; the board above still scrolls normally. */
+.darts__pad {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  touch-action: none;
+  cursor: grab;
+}
+
+.darts.is-pulling .darts__pad { cursor: grabbing; }
+
+/* ---------- Scoreboard, fact, throw ---------- */
+
+.darts__side {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+/* A slate with chalk writing: dark in both themes, by design. */
+.chalkboard {
+  padding: var(--space-4) var(--space-5);
+  color: #ecebe4;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, .06), transparent 60%),
+    url("../../assets/scans/grain-dark.png") 0 0 / 160px 160px,
+    #2c312c;
+  border: 8px solid #7a5a36;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .4), 0 2px 4px rgba(0, 0, 0, .25);
+  font-family: var(--font-hand);
+}
+
+.chalkboard__title {
+  font-size: 1.6rem;
+  border-bottom: 1px solid rgba(236, 235, 228, .35);
+}
+
+.chalkboard__rounds {
+  min-height: 6.5rem;
+  margin: var(--space-2) 0 0;
+  padding: 0 0 0 1.4rem;
+  font-size: 1.35rem;
+  line-height: 1.35;
+  opacity: .92;
+}
+
+.chalkboard__rounds li { max-width: none; }
+.chalkboard__rounds li:not(:first-child) { opacity: .55; }
+
+.chalkboard__total {
+  margin-top: var(--space-2);
+  font-size: 1.7rem;
+}
+
+.darts__fact {
+  min-height: 3.6em;
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  line-height: 1.2;
+  color: var(--ink-soft);
+}
+
+.darts__throw {
+  justify-self: start;
+  padding: .45rem 1.1rem;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  color: var(--sheet-ink);
+  background: color-mix(in srgb, var(--ochre) 45%, var(--sheet));
+  border: 1.5px solid var(--ink);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.darts__reference { max-width: 14rem; }

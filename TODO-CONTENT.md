@@ -63,8 +63,7 @@ Everything here is something only Uno can write or confirm. In the data files, e
 ## Behavior (`profile.json`)
 
 - [ ] A short note in my words for badminton, soccer, aikido, darts, and blackjack
-- [ ] A photo of my dartboard to draw the playable board from
-- [ ] Facts for the dartboard segments (`dartboardFacts`)
+- [ ] Facts for the dartboard segments (`dartboardFacts`: `{ segment, fact }`, segment 1-20 or "bull"). Until then, segments show your recorded sports facts.
 
 ## Habitat
 
