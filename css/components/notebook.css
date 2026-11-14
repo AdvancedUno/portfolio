@@ -1,0 +1,187 @@
+/* notebook.css: the closed notebook that opens the site.
+   The inline script in <head> sets html[data-cover] before first paint:
+   "closed" shows the notebook; "open" (opened this session, or arrived on a #section link)
+   skips it. With no JavaScript there is no attribute, so the notebook never blocks the page. */
+
+.notebook { display: none; }
+
+html[data-cover="closed"] { overflow: hidden; }
+
+html[data-cover="closed"] .notebook {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  perspective: 2200px;
+  transition: opacity 450ms ease 600ms, background-color 300ms ease;
+}
+
+/* ---------- The board ---------- */
+
+.notebook__board {
+  position: relative;
+  width: min(84vw, 58vh, 30rem);
+  width: min(84vw, 58svh, 30rem);
+  aspect-ratio: 3 / 4;
+  border-radius: 3px 9px 9px 3px;
+  /* Spine shading on the left, worn corners, fiber speckle, then the kraft itself. */
+  background:
+    linear-gradient(to right, rgba(20, 16, 8, .28), transparent 5%, rgba(255, 240, 210, .08) 6.5%, transparent 9%),
+    radial-gradient(circle at 100% 0, rgba(255, 238, 205, .18), transparent 18%),
+    radial-gradient(circle at 100% 100%, rgba(255, 238, 205, .14), transparent 16%),
+    url("../../assets/scans/grain-light.png") 0 0 / 160px 160px,
+    var(--kraft);
+  /* Page edges peeking out under the board, and a shadow on the desk. */
+  box-shadow:
+    1px 1px 0 var(--kraft-edge),
+    3px 3px 0 -1px #e9e5d8,
+    5px 5px 0 -2px #d9d4c4,
+    6px 6px 0 -2px var(--kraft-edge),
+    0 22px 34px -20px rgba(25, 20, 10, .6);
+  transform-origin: left center;
+  rotate: var(--tilt, 0deg);
+  backface-visibility: hidden;
+  transition: transform 1100ms var(--ease-swing);
+}
+
+/* The whole board is one big button; stickers sit above it as their own links. */
+.notebook__open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: inherit;
+  cursor: pointer;
+}
+
+.notebook__open:focus-visible {
+  outline: 2px dashed var(--slate);
+  outline-offset: 8px;
+}
+
+.notebook__hint {
+  position: absolute;
+  left: 9%;
+  bottom: 5%;
+  font-family: var(--font-hand);
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 1.75rem);
+  color: #f3f1e9;
+}
+
+/* ---------- Title label ---------- */
+
+.notebook__label {
+  position: absolute;
+  top: 11%;
+  left: 11%;
+  right: 24%;
+  z-index: 2;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  text-align: center;
+  color: #33362f;
+  background: #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .5);
+  box-shadow:
+    inset 0 0 0 4px #f3f1e9,
+    inset 0 0 0 5px rgba(51, 54, 47, .25),
+    0 1px 2px rgba(25, 20, 10, .3);
+  rotate: -1.2deg;
+  pointer-events: none;
+}
+
+.notebook__title {
+  font-family: var(--font-hand);
+  font-size: clamp(2rem, 1.4rem + 3vw, 3rem);
+  line-height: .95;
+}
+
+.notebook__species {
+  margin-top: var(--space-2);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+}
+
+/* ---------- Elastic band ---------- */
+
+.notebook__band {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  right: 11%;
+  z-index: 2;
+  width: 1.05rem;
+  background: linear-gradient(to right, #191a16, var(--band) 35%, #44463e 55%, #1c1d19);
+  box-shadow: 2px 0 3px rgba(0, 0, 0, .3);
+  pointer-events: none;
+}
+
+/* ---------- Stickers: shortcuts into the guide ---------- */
+
+.notebook__stickers {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sticker {
+  --wash: #8fa58a;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: clamp(3rem, 2.4rem + 2vw, 3.75rem);
+  aspect-ratio: 1;
+  color: #33362f;
+  background: color-mix(in srgb, var(--wash) 72%, #f3f1e9);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 3px rgba(243, 241, 233, .65),
+    0 1px 1px rgba(25, 20, 10, .35);
+  rotate: var(--tilt, 0deg);
+  transition: translate var(--dur-quick) var(--ease-out), box-shadow var(--dur-quick);
+}
+
+.notebook__stickers li:nth-child(3n + 2) .sticker { --wash: #c39a3f; }
+.notebook__stickers li:nth-child(3n + 3) .sticker { --wash: #6a8399; }
+
+/* One sticker is a rounded rectangle, one a stamp-like square, so they do not look stamped out. */
+.notebook__stickers li:nth-child(2) .sticker { border-radius: 30% 34% 28% 36%; }
+.notebook__stickers li:nth-child(4) .sticker { border-radius: 8px; }
+
+.sticker .icon {
+  width: 55%;
+  height: 55%;
+}
+
+.sticker:hover {
+  translate: 0 -3px;
+  box-shadow: inset 0 0 0 3px rgba(243, 241, 233, .65), 0 4px 6px rgba(25, 20, 10, .3);
+}
+
+.sticker:focus-visible {
+  outline: 2px dashed #f3f1e9;
+  outline-offset: 3px;
+}
+
+/* ---------- Opening ---------- */
+
+/* The desk clears at once, so the board lifts off the real contents page underneath. */
+.notebook.is-opening {
+  opacity: 0;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.notebook.is-opening .notebook__board { transform: rotateY(-150deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-cover="closed"] .notebook { transition: opacity 350ms ease; }
+  .notebook.is-opening .notebook__board { transform: none; }
+}
