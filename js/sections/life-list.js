@@ -21,8 +21,10 @@ const save = (found) => {
   try { localStorage.setItem(KEY, JSON.stringify([...found])); } catch { /* storage blocked: this visit only */ }
 };
 
-/** Built sections no longer contain the placeholder figure. */
+/** Built sections no longer contain the placeholder figure, and nothing marks the item
+ *  as waiting for content (data-lifelist-pending, for example the violin recording). */
 const isAvailable = (item) => {
+  if (document.querySelector(`[data-lifelist-pending~="${item.id}"]`)) return false;
   if (!item.section) return true;
   const plate = document.getElementById(item.section);
   return Boolean(plate) && !plate.querySelector('.fig');

@@ -1,0 +1,75 @@
+{
+ "release-group": {
+  "secondary-types": [],
+  "disambiguation": "",
+  "primary-type-id": "f529b476-6e62-324f-b0aa-1f3e33d313fc",
+  "first-release-date": "1959-08-17",
+  "primary-type": "Album",
+  "title": "Kind of Blue",
+  "secondary-type-ids": [],
+  "id": "8e8a594f-2175-38c7-a871-abb68ec363e7"
+ },
+ "disambiguation": "",
+ "cover-art-archive": {
+  "artwork": true,
+  "darkened": false,
+  "count": 6,
+  "front": true,
+  "back": true
+ },
+ "asin": "B000002AJR",
+ "release-events": [
+  {
+   "date": "1987",
+   "area": {
+    "id": "489ce91b-6658-3307-9877-795b68554c98",
+    "iso-3166-1-codes": [
+     "US"
+    ],
+    "sort-name": "United States",
+    "type": null,
+    "disambiguation": "",
+    "name": "United States",
+    "type-id": null
+   }
+  }
+ ],
+ "barcode": "074644057928",
+ "title": "Kind of Blue",
+ "quality": "normal",
+ "media": [
+  {
+   "track-count": 5,
+   "format": "CD",
+   "position": 1,
+   "title": "",
+   "id": "5890273c-a9a5-3ce3-a776-02ac4283bbfe",
+   "format-id": "9712d52a-4509-3d4b-a1a2-67c88c643e31"
+  }
+ ],
+ "text-representation": {
+  "language": "eng",
+  "script": "Latn"
+ },
+ "id": "e32a3f0b-1c19-3170-bb1c-650893774744",
+ "date": "1987",
+ "packaging-id": "ec27701a-4a22-37f4-bfac-6616e0f9750a",
+ "status-id": "4e304316-386d-3409-af2e-78857eec5cfe",
+ "label-info": [
+  {
+   "label": {
+    "disambiguation": "owned by Sony Music Entertainment, worldwide except JP; formerly owned by CBS between 1938–1990 within US/CA/MX",
+    "name": "Columbia",
+    "type-id": "b6285b2a-3514-3d43-80df-fcf528824ded",
+    "label-code": 162,
+    "sort-name": "Columbia",
+    "id": "011d1192-6f65-45bd-85c4-0400dd45693e",
+    "type": "Imprint"
+   },
+   "catalog-number": "CK 40579"
+  }
+ ],
+ "country": "US",
+ "packaging": "Jewel Case",
+ "status": "Official"
+}

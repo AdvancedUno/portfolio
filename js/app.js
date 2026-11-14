@@ -15,6 +15,9 @@ import { initFieldLog } from './sections/field-log.js';
 import { initFirstSpecimen } from './sections/first-specimen.js';
 import { initLifeList } from './sections/life-list.js';
 import { initBehavior } from './sections/behavior.js';
+import { initDrawer } from './sections/drawer.js';
+import { initSong } from './sections/song.js';
+import { initHabitat } from './sections/habitat.js';
 
 // Lets CSS tell "scripts are running" apart from the plain HTML fallback.
 document.documentElement.classList.add('js');
@@ -29,4 +32,4 @@ initSighting();
 initBackCover();
 
 // The life list shows only items whose sections are built, so it starts once they are.
-Promise.allSettled([initIdentification(), initRange(), initTracks(), initFieldLog(), initBehavior()]).then(initLifeList);
+Promise.allSettled([initIdentification(), initRange(), initTracks(), initFieldLog(), initDrawer(), initSong(), initBehavior(), initHabitat()]).then(initLifeList);

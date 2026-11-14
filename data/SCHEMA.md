@@ -55,6 +55,7 @@ Two kinds of node share the file, because the family tree needs both:
 
 - `instruments`: `{ id, name, facts[] }[]`
 - `recording`: `{ src, title, recorded, note }`
+- `recording.src` is a file name inside `assets/audio/` (for example `"violin.mp3"`). Until it is set, the player shows "Still in its case" and the life list hides "Played the violin recording".
 - `mixtape`: `{ taste, title, albums[] }`. Each album is `{ id, artist, title, mbReleaseId, note }`. `mbReleaseId` is a MusicBrainz release id, stored here so the site never searches at runtime.
 
 ## books.json
@@ -63,7 +64,10 @@ Two kinds of node share the file, because the family tree needs both:
 
 ## objects.json
 
-`{ id, name, photo, alt, label, story }[]`. `photo` is a file in `assets/objects/`.
+`{ id, name, photo, webp?, width?, height?, alt, label, story }[]`.
+
+- `photo` is the JPEG path (for example `"./assets/objects/violin.jpg"`) and `webp` the optional WebP, at most 1200px on the long edge. Until `photo` is set, the drawer shows a plain pencil drawing of that kind of thing, marked "Photo to come".
+- Ids `challenge-coins`, `aikido-belt`, `violin`, `shuttlecock`, and `pressed-leaf` have their own stand-in drawings; any other id gets a blank tag.
 
 ## photos.json
 
@@ -81,3 +85,8 @@ Two kinds of node share the file, because the family tree needs both:
 ## fallback/
 
 One saved real response per API, used when the live request fails. These are added as each API is built.
+
+- `open-meteo-*.json`, `restcountries-{CC}.json`, `github-{repo}.json` and `github-{repo}-languages.json`: used by name.
+- `inaturalist-{placeId}-p1.json`: page 1 of Habitat for a place (trimmed to the fields the site reads). Only used once that place has `hikes: true`.
+- `musicbrainz-{mbReleaseId}.json` and `caa-{mbReleaseId}.json`: per album, saved once the album list exists.
+- `musicbrainz-sample.json` and `caa-sample.json`: real responses kept as a record of the shape; not read by the site.

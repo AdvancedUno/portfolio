@@ -1,0 +1,335 @@
+/* song.css: the field recording with its pencil waveform, and the cassette mixtape.
+   Both sit on the light sheet in either theme, so their inks are fixed. */
+
+.song {
+  display: grid;
+  gap: calc(var(--rule-gap) * 2);
+  margin-top: calc(var(--rule-gap) * 2);
+}
+
+/* ---------- Field recording ---------- */
+
+.recording {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 44rem;
+  padding: var(--space-5);
+  color: #33362f;
+  background: #f3f1e9;
+  border: 1px solid rgba(51, 54, 47, .35);
+  box-shadow: 0 1px 0 rgba(51, 54, 47, .15), 0 18px 30px -22px rgba(0, 0, 0, .55);
+  rotate: -.6deg;
+}
+
+.recording__kind,
+.recording__when,
+.recording__facts {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: #5d6157;
+}
+
+.recording__title {
+  margin-top: var(--space-1);
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.recording__facts {
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recording__facts li::before { content: "- "; }
+
+.recording__deck {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.recording__play {
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  color: #33362f;
+  background: color-mix(in srgb, #c39a3f 35%, #f3f1e9);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.recording__play:disabled { background: none; cursor: not-allowed; opacity: .55; }
+
+.recording__play svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.recording__icon-play { fill: currentColor; }
+.recording__icon-pause { display: none; stroke-width: 3; }
+.recording.is-playing .recording__icon-play { display: none; }
+.recording.is-playing .recording__icon-pause { display: inline; }
+
+/* The waveform: faint pencil underneath, dark pencil on top up to the playhead. */
+.wave {
+  position: relative;
+  height: 3.75rem;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.wave svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.wave__faint { stroke: rgba(51, 54, 47, .28); stroke-width: 2.2; }
+.wave__ink {
+  stroke: #33362f;
+  stroke-width: 2.2;
+  clip-path: inset(0 calc(100% - var(--p, 0%)) 0 0);
+}
+
+.wave__rest path { stroke: rgba(51, 54, 47, .45); stroke-width: 1.5; stroke-dasharray: 3 4; }
+
+.wave.is-loading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #5d6157 50%, transparent 50%) 0 0 / 200% 100%;
+  animation: track-load 1.2s linear infinite;
+}
+
+.recording.is-empty .wave { cursor: default; }
+
+.recording__time {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: #5d6157;
+  white-space: nowrap;
+}
+
+.recording.is-empty .recording__time { font-family: var(--font-hand); font-size: 1.2rem; }
+
+.recording__note {
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  line-height: 1.2;
+}
+
+@media (max-width: 479.98px) {
+  .recording { padding: var(--space-4); }
+  .recording__deck { grid-template-columns: auto minmax(0, 1fr); }
+  .recording__time { grid-column: 2; }
+}
+
+/* ---------- Mixtape: cassette and J-card ---------- */
+
+.mixtape {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .mixtape { grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 1fr); }
+}
+
+/* The cover sits behind the cassette and slides up out of it. */
+.tape-deck {
+  position: relative;
+  max-width: 26rem;
+  width: 100%;
+  margin-top: 7rem;
+  justify-self: center;
+}
+
+.tape-deck__cover {
+  position: absolute;
+  top: 0;
+  right: 8%;
+  width: 46%;
+  margin: 0;
+  translate: 0 8%;
+  rotate: 0deg;
+  opacity: 0;
+  transition: translate 450ms var(--ease-out), rotate 450ms var(--ease-out), opacity 200ms ease;
+}
+
+.tape-deck.is-out .tape-deck__cover {
+  translate: 6% -62%;
+  rotate: 4deg;
+  opacity: 1;
+}
+
+.tape-deck__art {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: #e6e2d6;
+  border: 1px solid rgba(51, 54, 47, .4);
+  box-shadow: 0 6px 12px -6px rgba(0, 0, 0, .5);
+}
+
+.tape-deck__art img { width: 100%; height: 100%; object-fit: cover; }
+
+.tape-deck__no-art {
+  padding: var(--space-2);
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  text-align: center;
+  color: #5d6157;
+}
+
+.tape-deck__readout {
+  min-height: 3em;
+  margin-top: var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+}
+
+.cassette {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: none;
+  stroke: #33362f;
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.cassette__shell { fill: #d6d1c2; }
+.cassette__label { fill: #f3f1e9; }
+.cassette__stripe { stroke: #8f4632; stroke-width: 2.5; }
+.cassette__window { fill: #5d6157; }
+.cassette__mouth { fill: #c9c3b2; }
+.cassette__tape-line { stroke: #2b2d27; stroke-width: 2; }
+.reel__tape { fill: #3b3a33; stroke: none; }
+.reel__hub { fill: #f3f1e9; }
+.reel path { stroke: #33362f; stroke-width: 1.6; }
+
+.cassette__title {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  fill: #33362f;
+  stroke: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reel {
+    transform-box: view-box;
+    animation: reel-spin 2.6s linear infinite;
+    animation-play-state: paused;
+  }
+  .cassette.is-spinning .reel { animation-play-state: running; }
+}
+
+@keyframes reel-spin { to { rotate: -360deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .tape-deck__cover { transition: opacity 200ms ease; translate: 6% -62%; rotate: 4deg; }
+}
+
+/* The J-card: a folded paper insert with a spine. */
+.jcard {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 26rem;
+  padding: var(--space-4) var(--space-5) var(--space-5) calc(var(--space-5) + 2.2rem);
+  color: #33362f;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 calc(2rem - 1px), rgba(90, 110, 130, .18) calc(2rem - 1px) 2rem),
+    #f6f3ea;
+  border: 1px solid rgba(51, 54, 47, .35);
+  box-shadow: 0 16px 26px -20px rgba(0, 0, 0, .55);
+  rotate: .8deg;
+}
+
+/* The spine runs down the fold on the left, typed sideways. */
+.jcard__spine {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2.2rem;
+  padding-top: var(--space-4);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  text-align: end;
+  color: #f3f1e9;
+  background: #6a8399;
+  border-left: 1px dashed rgba(51, 54, 47, .45);
+}
+
+.jcard__title {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.jcard__side {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: #8f4632;
+}
+
+.jcard__tracks {
+  margin: 0;
+  padding-left: 1.4rem;
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+}
+
+.jcard__tracks li { max-width: none; min-height: 2rem; }
+
+.jcard__track {
+  display: grid;
+  width: 100%;
+  padding: .1rem .3rem;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1.15;
+}
+
+.jcard__track.is-active { background: rgba(195, 154, 63, .28); }
+.jcard__track[aria-pressed="true"] { box-shadow: inset 2px 0 0 #8f4632; }
+
+.jcard__album { font-size: 1.1rem; color: #5d6157; }
+.jcard__album-note { font-size: 1.05rem; color: #8f4632; }
+
+/* No albums yet: blank pencil lines waiting for a tracklist. */
+.jcard__blank {
+  height: 2rem;
+  border-bottom: 1px dashed rgba(51, 54, 47, .3);
+}
+
+.mixtape.is-empty .tape-deck { margin-top: 0; }
+
+/* Placeholders sit on the light sheet here, so they keep dark pencil in both themes. */
+.recording .is-placeholder[class],
+.jcard .is-placeholder[class] { color: #5d6157; }

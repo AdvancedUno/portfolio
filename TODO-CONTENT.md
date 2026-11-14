@@ -52,13 +52,15 @@ Everything here is something only Uno can write or confirm. In the data files, e
 ## Specimen drawer (`objects.json`)
 
 - [ ] Confirm the objects. The brief lists challenge coins, an aikido belt, a violin, a shuttlecock, and a pressed leaf, but these were not in my confirmed facts.
-- [ ] A photo, alt text, short label, and story for each
+- [ ] A photo, alt text, short label, and story for each. Until a photo arrives, each object shows a plain pencil drawing marked "Photo to come".
+- [ ] Any other objects to add (each gets a blank-tag drawing until its photo arrives)
 
 ## Song and call (`music.json`)
 
 - [ ] Violin recording file for `assets/audio/`, plus what the piece is, when it was recorded, and a one-line note
 - [ ] Mixtape title
-- [ ] Album list: artist, title, MusicBrainz release id, and a short note for each
+- [ ] Album list: artist, title, and a short note for each. Claude can look up the MusicBrainz release ids for you to confirm, then save their fallbacks.
+- [ ] Guitar: any facts for `instruments` (currently empty)
 
 ## Behavior (`profile.json`)
 
@@ -67,7 +69,8 @@ Everything here is something only Uno can write or confirm. In the data files, e
 
 ## Habitat
 
-- [ ] Nothing extra beyond `hikes` in places.json (see Range and migration)
+- [ ] Mark the places I have hiked near with `"hikes": true` in places.json (see Range and migration). Until then, Habitat shows a trail sign and a note. Each place then shows the species with the most research-grade iNaturalist sightings within 20 km.
+- [ ] Optional: if St. Louis should not be one of them, a fallback for whichever place is (Claude can save it)
 
 ## First specimen (`profile.json`)
 

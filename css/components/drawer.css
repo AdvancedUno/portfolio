@@ -1,0 +1,245 @@
+/* drawer.css: the Specimen drawer. A wooden cabinet drawer that slides open to show
+   card trays lined with cotton. Wood, brass and cotton keep their colors in both themes. */
+
+.drawer-wrap {
+  margin-top: calc(var(--rule-gap) * 2);
+  max-width: 52rem;
+}
+
+.drawer {
+  --wood: #8a6440;
+  --wood-dark: #5e4329;
+  --wood-grain:
+    repeating-linear-gradient(92deg, rgba(40, 24, 10, .0) 0 7px, rgba(40, 24, 10, .10) 7px 8px, rgba(40, 24, 10, 0) 8px 19px, rgba(255, 230, 190, .06) 19px 21px),
+    repeating-linear-gradient(88deg, rgba(40, 24, 10, .07) 0 2px, transparent 2px 37px);
+  display: grid;
+  filter: drop-shadow(0 18px 18px rgba(30, 20, 10, .28));
+}
+
+/* The underside of the cabinet top: the drawer comes out from beneath it. */
+.drawer__cabinet-top {
+  height: .9rem;
+  background: var(--wood-grain), var(--wood-dark);
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset 0 -3px 4px rgba(0, 0, 0, .35);
+}
+
+/* The tray grows from nothing; its contents sit at the bottom, so the row nearest the
+   front shows first. grid-template-rows 0fr -> 1fr animates to the content's height. */
+.drawer__tray {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 800ms var(--ease-swing);
+}
+
+.drawer.is-open .drawer__tray { grid-template-rows: 1fr; }
+
+.drawer__inside {
+  min-height: 0;
+  overflow: hidden;
+  align-self: end;
+  /* The side walls and floor of the tray. */
+  background: var(--wood-grain), #6f5034;
+  border-inline: 10px solid #9b7650;
+  box-shadow: inset 0 12px 14px -8px rgba(0, 0, 0, .55);
+}
+
+.drawer__objects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: var(--space-4) var(--space-3);
+  list-style: none;
+}
+
+/* The drawer front: one big button with a brass label holder and a pull handle. */
+.drawer__front {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
+  min-height: 6.5rem;
+  padding: var(--space-3);
+  background:
+    linear-gradient(180deg, rgba(255, 235, 200, .12), transparent 30%, rgba(0, 0, 0, .14)),
+    var(--wood-grain), var(--wood);
+  border: 0;
+  border-radius: 0 0 4px 4px;
+  box-shadow: inset 0 0 0 1px rgba(40, 24, 10, .45), inset 0 2px 0 rgba(255, 235, 200, .18);
+  cursor: pointer;
+}
+
+.drawer__front:focus-visible { outline-offset: 4px; }
+
+/* Brass card holder with a typed card in it. */
+.drawer__label {
+  grid-column: 2;
+  padding: .3rem;
+  background: linear-gradient(160deg, #e3c27a, #a7803b 55%, #d9b86c);
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
+
+.drawer__label-card {
+  display: block;
+  padding: .2rem .9rem;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: #33362f;
+  background: #f3f1e9;
+  white-space: nowrap;
+}
+
+/* A cup pull under the label holder. */
+.drawer__handle {
+  position: absolute;
+  left: 50%;
+  bottom: .9rem;
+  width: 5.5rem;
+  height: 1.2rem;
+  translate: -50% 0;
+  background: linear-gradient(180deg, #e3c27a, #8d6a2e);
+  border-radius: 0 0 2.75rem 2.75rem / 0 0 1.2rem 1.2rem;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .45), inset 0 -2px 0 rgba(0, 0, 0, .25);
+  transition: translate 200ms var(--ease-out);
+}
+
+.drawer__front:hover .drawer__handle { translate: -50% 2px; }
+
+.drawer__hint {
+  margin-top: var(--space-3);
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  line-height: 1.2;
+  color: var(--ink-soft);
+}
+
+/* ---------- One object in its card tray ---------- */
+
+.obj { min-height: 14.5rem; }
+
+.obj .flip__face {
+  display: grid;
+  align-content: start;
+  padding: var(--space-3);
+  color: #33362f;
+  /* A pale card tray, lined with cotton. */
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .7), transparent 60%),
+    radial-gradient(circle at 70% 75%, rgba(255, 255, 255, .5), transparent 55%),
+    #ebe5d6;
+  border: 4px solid #d9cfb8;
+  box-shadow: inset 0 0 0 1px rgba(51, 54, 47, .25), inset 0 6px 10px -6px rgba(0, 0, 0, .35);
+}
+
+.obj__thing {
+  display: grid;
+  place-items: center;
+  height: 8.5rem;
+  transition: translate 260ms var(--ease-out), filter 260ms var(--ease-out);
+  filter: drop-shadow(0 1px 1px rgba(40, 30, 15, .25));
+}
+
+.obj__thing img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.obj__drawing {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #33362f;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.obj__drawing .wash { stroke: none; opacity: .55; }
+.obj__drawing .wash--ochre { fill: #c39a3f; }
+.obj__drawing .wash--slate { fill: #6a8399; }
+.obj__drawing .wash--sage { fill: #8fa58a; }
+.obj__drawing .wash--paper { fill: #f7f4ea; opacity: .9; }
+
+/* Hover or focus lifts the object off the cotton. */
+.obj:hover .obj__thing,
+.obj:has(.flip__turn:focus-visible) .obj__thing {
+  translate: 0 -6px;
+  filter: drop-shadow(0 10px 6px rgba(40, 30, 15, .3));
+}
+
+/* The handwritten slip that sits with each object. */
+.obj__slip {
+  display: grid;
+  gap: .1rem;
+  margin-top: var(--space-2);
+  padding: .35rem .55rem;
+  background: #f8f6ef;
+  border: 1px solid rgba(51, 54, 47, .25);
+  rotate: var(--tilt, 0deg);
+}
+
+.obj__name {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+}
+
+.obj__label {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.obj__pending {
+  font-family: var(--font-label);
+  font-size: .6875rem;
+  color: #8f4632;
+}
+
+/* The back: the story, on the underside of the card. */
+.obj .flip__back {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: #f3f1e9;
+  border-color: #cfc4aa;
+}
+
+.obj__back-title {
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+}
+
+.obj__story {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+/* Phones: two trays to a row, a little smaller, so the drawer is not a mile long. */
+@media (max-width: 559.98px) {
+  .drawer__inside { border-inline-width: 6px; }
+  .drawer__objects {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-2);
+  }
+  .obj { min-height: 12.5rem; }
+  .obj .flip__face { padding: var(--space-2); border-width: 3px; }
+  .obj__thing { height: 6.25rem; }
+  .obj__label { font-size: 1.05rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer__tray { transition: none; }
+  .drawer.is-open .drawer__inside { animation: drawer-fade 300ms ease; }
+  .obj__thing, .drawer__handle { transition: none; }
+}
+
+@keyframes drawer-fade { from { opacity: 0; } }
+
+/* Placeholders sit on the light card trays, so they keep dark pencil in both themes. */
+.obj .is-placeholder[class] { font-size: 1.2rem; color: #5d6157; }

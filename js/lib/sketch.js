@@ -103,3 +103,33 @@ function whenNear(el, fn) {
   }, { rootMargin: '600px 0px' });
   observer.observe(el);
 }
+
+/**
+ * Bake a drawing of a photo from another site (it must allow CORS), for cards that show
+ * only the drawing, like Habitat. Waits its turn in the same one-at-a-time queue.
+ * @param {string} url
+ * @param {'pencil'|'watercolor'} kind
+ * @returns {Promise<{src: string, edge: string, width: number, height: number}>} blob URLs
+ */
+export function bakeRemote(url, kind) {
+  const job = queue.then(async () => {
+    const blob = await (await fetch(url)).blob();
+    const bitmap = await createImageBitmap(blob);
+    const { width, height } = bitmap;
+    bitmap.close();
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+    return {
+      src: svgUrl(drawingSvg(width, height, kind, dataUrl)),
+      edge: svgUrl(edgeMaskSvg(width, height, kind)),
+      width,
+      height,
+    };
+  });
+  queue = job.catch(() => {});
+  return job;
+}

@@ -50,6 +50,16 @@ const LINES = {
     return names.length ? sentenceCase(listOf(names)) : '';
   },
 
+  drawer: async () => {
+    const objects = (await load('objects')).filter((o) => known(o.name));
+    return objects.length ? plural(objects.length, 'object') : '';
+  },
+
+  habitat: async () => {
+    const hikes = (await load('places')).filter((p) => p.hikes === true);
+    return hikes.length ? `Near ${plural(hikes.length, 'hiking place')}` : '';
+  },
+
   behavior: async () => {
     const behaviors = (await load('profile')).behavior.filter((b) => known(b.name));
     return behaviors.length ? plural(behaviors.length, 'sport or game', 'sports and games') : '';

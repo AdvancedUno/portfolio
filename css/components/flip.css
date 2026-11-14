@@ -1,0 +1,62 @@
+/* flip.css: a card that turns over (js/lib/flip.js). Used in the drawer and in Habitat.
+   Both faces share one grid cell, so the card is as tall as its taller side. */
+
+.flip {
+  perspective: 900px;
+  max-width: none;
+}
+
+.flip__card {
+  display: grid;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 650ms var(--ease-swing);
+}
+
+.flip.is-flipped .flip__card { transform: rotateY(180deg); }
+
+.flip__face {
+  grid-area: 1 / 1;
+  position: relative;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip__back { transform: rotateY(180deg); }
+
+/* The front button lies over the whole face: invisible, but it takes the click and the focus. */
+.flip__turn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.flip__turn:focus-visible { outline-offset: 3px; }
+
+.flip__back-button {
+  justify-self: start;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: .15rem .55rem;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: #33362f;
+  background: none;
+  border: 1px solid rgba(51, 54, 47, .45);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Reduced motion: no turn, a crossfade. */
+@media (prefers-reduced-motion: reduce) {
+  .flip__card { transition: none; }
+  .flip.is-flipped .flip__card { transform: none; }
+  .flip__back { transform: none; opacity: 0; }
+  .flip__face { transition: opacity 250ms ease; }
+  .flip.is-flipped .flip__front { opacity: 0; }
+  .flip.is-flipped .flip__back { opacity: 1; }
+}
