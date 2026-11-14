@@ -1,0 +1,221 @@
+/* plate.css: each section is a numbered field guide plate.
+
+   Small screens: the margin (numeral, note, scale bar) sits above the body.
+   From 1024px:   [ margin column | rust margin rule | body | free gutter for index tabs ]
+
+   Vertical spacing uses multiples of --rule-gap so the plates keep time with the
+   ruled lines on the paper. */
+
+.plate {
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  width: min(100% - 2 * var(--gutter), var(--page-width));
+  margin-inline: auto;
+  padding-block: calc(var(--rule-gap) * 3);
+  scroll-margin-top: 0;
+}
+
+/* A double pencil rule across the top of each plate, like the edge of a printed plate. */
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  border-block: 1px solid var(--pencil-faint);
+}
+
+/* ---------- Margin column ---------- */
+
+.plate__margin {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: end;
+  column-gap: var(--space-4);
+  row-gap: var(--space-3);
+}
+
+/* The big faint plate number. Decorative: the label and contents carry the real numbering. */
+.plate__numeral {
+  font-family: var(--font-hand);
+  font-size: clamp(4rem, 3rem + 5vw, 7.5rem);
+  line-height: .75;
+  color: color-mix(in srgb, var(--ink) 16%, transparent);
+}
+
+.plate__note {
+  max-width: 16ch;
+  font-family: var(--font-hand);
+  font-size: var(--text-hand);
+  line-height: 1.1;
+  color: var(--ink-soft);
+}
+
+/* A pencil scale bar: four alternating segments, with a typewritten caption under it. */
+.scale-bar {
+  grid-column: 1 / -1;
+  display: inline-grid;
+  justify-self: start;
+  gap: var(--space-1);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+}
+
+.scale-bar::before {
+  content: "";
+  width: 6rem;
+  height: .4rem;
+  border: 1px solid var(--ink-soft);
+  background:
+    linear-gradient(to right,
+      var(--ink-soft) 0 25%, transparent 25% 50%,
+      var(--ink-soft) 50% 75%, transparent 75%);
+}
+
+/* ---------- Specimen card: the plate's label, holding the heading ---------- */
+
+.specimen-card {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  padding: var(--space-4) var(--space-6) var(--space-3);
+  color: var(--sheet-ink);
+  background: var(--sheet);
+  border: 1px solid color-mix(in srgb, var(--sheet-ink) 55%, transparent);
+  /* An inner second rule, like an old printed museum label, plus a hairline lift off the page. */
+  box-shadow:
+    inset 0 0 0 4px var(--sheet),
+    inset 0 0 0 5px color-mix(in srgb, var(--sheet-ink) 28%, transparent),
+    0 1px 2px rgba(40, 38, 30, .12);
+  rotate: var(--tilt, 0deg);
+}
+
+/* Tape across the top-left corner. */
+.specimen-card::before {
+  content: "";
+  position: absolute;
+  top: -.55rem;
+  left: -1.1rem;
+  width: 4.25rem;
+  height: 1.3rem;
+  rotate: -32deg;
+  background: color-mix(in srgb, var(--sage) 55%, transparent);
+  clip-path: var(--tape-torn);
+}
+
+.specimen-card h2 {
+  font-size: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
+  line-height: 1;
+}
+
+/* The data line is a typewritten entry on a ruled field. Its height is always reserved, so
+   filling it in from data/*.json causes no layout shift, and an empty one reads as a blank field. */
+.specimen-card__data {
+  min-height: calc(var(--text-sm) * 1.5 + var(--space-1));
+  margin-top: var(--space-2);
+  padding-bottom: var(--space-1);
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  border-bottom: 1px dotted color-mix(in srgb, var(--sheet-ink) 45%, transparent);
+}
+
+/* ---------- Figure placeholder: an empty, hatched frame waiting for its drawing ---------- */
+
+.fig {
+  max-width: 46rem;
+  margin-top: calc(var(--rule-gap) * 2);
+}
+
+.fig__frame {
+  position: relative;
+  /* Phones get a shorter frame so one empty figure does not fill the whole screen. */
+  min-height: clamp(12rem, 70vw, var(--fig-h, 16rem));
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0 10px,
+    color-mix(in srgb, var(--ink) 8%, transparent) 10px 11px
+  );
+}
+
+/* Frame lines drawn like drafting lines: each overshoots the corners a little. */
+.fig__frame::before,
+.fig__frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.fig__frame::before {
+  inset: 0 -.6rem;
+  border-block: 1px solid var(--pencil-faint);
+}
+
+.fig__frame::after {
+  inset: -.6rem 0;
+  border-inline: 1px solid var(--pencil-faint);
+}
+
+.fig figcaption {
+  margin-top: var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+}
+
+/* Each frame reserves roughly the room its real content will need. */
+#identification { --fig-h: 24rem; }
+#range          { --fig-h: 28rem; }
+#tracks         { --fig-h: 26rem; }
+#field-log      { --fig-h: 18rem; }
+#drawer         { --fig-h: 20rem; }
+#song           { --fig-h: 16rem; }
+#behavior       { --fig-h: 22rem; }
+#habitat        { --fig-h: 20rem; }
+
+/* ---------- Wide screens: the margin column and the rust margin rule ---------- */
+
+@media (min-width: 1024px) {
+  .plate {
+    grid-template-columns: var(--margin-col) minmax(0, 1fr) var(--tab-gutter);
+    gap: 0;
+  }
+
+  /* The margin stays in view while a long plate scrolls past. */
+  .plate__margin {
+    position: sticky;
+    top: var(--space-6);
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-4);
+    padding-right: var(--space-6);
+    text-align: right;
+  }
+
+  .plate__note { max-width: 13ch; }
+
+  .scale-bar { justify-items: end; }
+
+  .plate__body {
+    position: relative;
+    grid-column: 2;
+    padding-left: var(--space-7);
+  }
+
+  /* The margin rule runs through the plate's padding too, so it is continuous down the page. */
+  .plate__body::before {
+    content: "";
+    position: absolute;
+    top: calc(var(--rule-gap) * -3);
+    bottom: calc(var(--rule-gap) * -3);
+    left: 0;
+    width: 1px;
+    background: color-mix(in srgb, var(--rust) 45%, transparent);
+  }
+
+  /* The label breaks the grid a little: it reaches back over the margin rule. */
+  .specimen-card { margin-left: calc(var(--space-6) * -1); }
+}

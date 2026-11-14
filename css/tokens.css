@@ -46,7 +46,7 @@
   --text-hand: clamp(1.5rem, 1.3rem + .6vw, 1.875rem);   /* short notes */
   --text-h3:   clamp(1.75rem, 1.5rem + .9vw, 2.25rem);
   --text-h2:   clamp(2.5rem, 2rem + 2vw, 3.75rem);
-  --text-h1:   clamp(3.5rem, 2.4rem + 5vw, 7rem);
+  --text-h1:   clamp(4rem, 2.4rem + 6.5vw, 8.5rem);
   --leading:   1.65;
   --leading-tight: 1.1;
   --measure:   66ch;                 /* keeps lines under 70 characters */
@@ -62,10 +62,21 @@
   --space-8: 4.5rem;
   --space-9: 7rem;
   --gutter:  clamp(1rem, .5rem + 3vw, 3rem);
-  --content-width: 68rem;
+  --page-width: 80rem;               /* cover, plates, back cover */
+  --margin-col: 14rem;               /* plate margin column, from 1024px up */
+  --tab-gutter: 5rem;                /* kept free on the right for the Phase 1 index tabs */
 
   /* Ruled lines line up with body text. */
   --rule-gap: calc(var(--text-base) * var(--leading));
+
+  /* Torn ends for strips of paper tape (used with clip-path). */
+  --tape-torn: polygon(
+    0 8%, 6% 0, 12% 10%, 18% 2%, 25% 8%, 100% 0, 96% 20%, 100% 38%, 95% 55%, 100% 74%,
+    96% 100%, 88% 92%, 80% 100%, 72% 93%, 0 100%, 4% 80%, 0 62%, 5% 44%, 0 26%
+  );
+
+  /* Faint pencil, for rules and frames drawn on the page. */
+  --pencil-faint: color-mix(in srgb, var(--ink) 32%, transparent);
 
   /* Placed objects get a seeded tilt between these bounds (applied per element as --tilt). */
   --tilt-min: -2.5deg;

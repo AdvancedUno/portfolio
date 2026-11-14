@@ -26,77 +26,182 @@
 
   <link rel="stylesheet" href="./css/tokens.css">
   <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components/cover.css">
+  <link rel="stylesheet" href="./css/components/plate.css">
 
   <script type="module" src="./js/app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#identification">Skip to the field guide</a>
 
-  <header class="site-header">
-    <nav class="index-tabs" aria-label="Sections">
-      <ol>
-        <li><a href="#cover">Cover</a></li>
-        <li><a href="#identification">Identification</a></li>
-        <li><a href="#range">Range and migration</a></li>
-        <li><a href="#tracks">Tracks and signs</a></li>
-        <li><a href="#field-log">Field log</a></li>
-        <li><a href="#drawer">Specimen drawer</a></li>
-        <li><a href="#song">Song and call</a></li>
-        <li><a href="#behavior">Behavior</a></li>
-        <li><a href="#habitat">Habitat</a></li>
-        <li><a href="#back-cover">Back cover</a></li>
+  <!-- The cover: title, species label, and a contents page. Phase 1 turns it into the notebook that opens. -->
+  <header id="cover" class="cover">
+    <div class="cover__title">
+      <h1>A Field Guide to Uno</h1>
+      <p class="specimen-label" data-tilt="cover-species">Species: Uno. Status: still being sketched.</p>
+    </div>
+
+    <nav class="contents" aria-labelledby="contents-title">
+      <h2 id="contents-title" class="contents__title">Contents</h2>
+      <ol class="contents__list">
+        <li><a href="#identification"><span class="contents__name">Identification</span><span class="contents__no">01</span></a></li>
+        <li><a href="#range"><span class="contents__name">Range and migration</span><span class="contents__no">02</span></a></li>
+        <li><a href="#tracks"><span class="contents__name">Tracks and signs</span><span class="contents__no">03</span></a></li>
+        <li><a href="#field-log"><span class="contents__name">Field log</span><span class="contents__no">04</span></a></li>
+        <li><a href="#drawer"><span class="contents__name">Specimen drawer</span><span class="contents__no">05</span></a></li>
+        <li><a href="#song"><span class="contents__name">Song and call</span><span class="contents__no">06</span></a></li>
+        <li><a href="#behavior"><span class="contents__name">Behavior</span><span class="contents__no">07</span></a></li>
+        <li><a href="#habitat"><span class="contents__name">Habitat</span><span class="contents__no">08</span></a></li>
+        <li><a href="#back-cover"><span class="contents__name">Back cover</span><span class="contents__no">end</span></a></li>
       </ol>
     </nav>
   </header>
 
   <main id="main">
-    <section id="cover" class="section section--cover" aria-labelledby="cover-title">
-      <h1 id="cover-title">A Field Guide to Uno</h1>
-      <p class="specimen-label">Species: Uno. Status: still being sketched.</p>
+    <section id="identification" class="plate" aria-labelledby="identification-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">01</span>
+        <p class="plate__note">How to tell me apart from similar species.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-identification">
+          <h2 id="identification-title">Identification</h2>
+          <p class="specimen-card__data" data-plate-data="identification"></p>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 1. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="identification" class="section" aria-labelledby="identification-title">
-      <h2 id="identification-title">Identification</h2>
-      <p class="note">Still being sketched.</p>
+    <section id="range" class="plate" aria-labelledby="range-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">02</span>
+        <p class="plate__note">Everywhere I've lived, in order.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-range">
+          <h2 id="range-title">Range and migration</h2>
+          <p class="specimen-card__data" data-plate-data="range"></p>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 2. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="range" class="section" aria-labelledby="range-title">
-      <h2 id="range-title">Range and migration</h2>
-      <p class="note">Still being sketched.</p>
+    <section id="tracks" class="plate" aria-labelledby="tracks-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">03</span>
+        <p class="plate__note">Things I've built, and what they grew out of.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-tracks">
+          <h2 id="tracks-title">Tracks and signs</h2>
+          <p class="specimen-card__data" data-plate-data="tracks"></p>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 3. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="tracks" class="section" aria-labelledby="tracks-title">
-      <h2 id="tracks-title">Tracks and signs</h2>
-      <p class="note">Still being sketched.</p>
+    <section id="field-log" class="plate" aria-labelledby="field-log-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">04</span>
+        <p class="plate__note">Work, service, and research, newest first.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-field-log">
+          <h2 id="field-log-title">Field log</h2>
+          <p class="specimen-card__data" data-plate-data="field-log"></p>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 4. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="field-log" class="section" aria-labelledby="field-log-title">
-      <h2 id="field-log-title">Field log</h2>
-      <p class="note">Still being sketched.</p>
+    <section id="drawer" class="plate" aria-labelledby="drawer-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">05</span>
+        <p class="plate__note">Real things I own, each with a story.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-drawer">
+          <h2 id="drawer-title">Specimen drawer</h2>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 5. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="drawer" class="section" aria-labelledby="drawer-title">
-      <h2 id="drawer-title">Specimen drawer</h2>
-      <p class="note">Still being sketched.</p>
+    <section id="song" class="plate" aria-labelledby="song-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">06</span>
+        <p class="plate__note">A violin recording and a winter jazz mixtape.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-song">
+          <h2 id="song-title">Song and call</h2>
+          <p class="specimen-card__data" data-plate-data="song"></p>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 6. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="song" class="section" aria-labelledby="song-title">
-      <h2 id="song-title">Song and call</h2>
-      <p class="note">Still being sketched.</p>
+    <section id="behavior" class="plate" aria-labelledby="behavior-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">07</span>
+        <p class="plate__note">Sports, games, and a dartboard you can throw at.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-behavior">
+          <h2 id="behavior-title">Behavior</h2>
+          <p class="specimen-card__data" data-plate-data="behavior"></p>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 7. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <section id="behavior" class="section" aria-labelledby="behavior-title">
-      <h2 id="behavior-title">Behavior</h2>
-      <p class="note">Still being sketched.</p>
-    </section>
-
-    <section id="habitat" class="section" aria-labelledby="habitat-title">
-      <h2 id="habitat-title">Habitat</h2>
-      <p class="note">Still being sketched.</p>
+    <section id="habitat" class="plate" aria-labelledby="habitat-title">
+      <div class="plate__margin">
+        <span class="plate__numeral" aria-hidden="true">08</span>
+        <p class="plate__note">What lives near the places I've hiked.</p>
+        <span class="scale-bar" aria-hidden="true">not to scale</span>
+      </div>
+      <div class="plate__body">
+        <div class="specimen-card" data-tilt="card-habitat">
+          <h2 id="habitat-title">Habitat</h2>
+        </div>
+        <figure class="fig">
+          <div class="fig__frame" aria-hidden="true"></div>
+          <figcaption>Fig. 8. Still being sketched.</figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- Hidden until the life list is complete or the hidden cover sticker is found (Phase 5). -->
-    <section id="first-specimen" class="section" aria-labelledby="first-specimen-title" hidden>
+    <section id="first-specimen" class="plate" aria-labelledby="first-specimen-title" hidden>
       <h2 id="first-specimen-title">First specimen</h2>
     </section>
   </main>
@@ -106,11 +211,9 @@
     <h2 id="life-list-title" class="visually-hidden">Life list</h2>
   </aside>
 
-  <footer class="site-footer">
-    <section id="back-cover" class="section" aria-labelledby="back-cover-title">
-      <h2 id="back-cover-title">If found, please return to</h2>
-      <p class="note">Still being sketched.</p>
-    </section>
+  <footer id="back-cover" class="back-cover">
+    <h2>If found, please return to</h2>
+    <p class="note">Still being sketched.</p>
   </footer>
 </body>
 </html>

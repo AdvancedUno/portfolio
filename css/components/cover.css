@@ -1,0 +1,109 @@
+/* cover.css: the front cover (title, species label, contents page) and the back cover.
+   Phase 1 turns the front cover into a closed notebook that swings open. */
+
+.cover {
+  display: grid;
+  align-content: center;
+  gap: var(--space-8);
+  width: min(100% - 2 * var(--gutter), var(--page-width));
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-inline: auto;
+  padding-block: var(--space-8);
+}
+
+.cover__title {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-6);
+}
+
+.cover h1 {
+  max-width: 8ch;
+  line-height: .92;
+}
+
+/* ---------- Contents: a field guide index with dotted leaders ---------- */
+
+.contents {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.contents__title {
+  font-size: var(--text-h3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--pencil-faint);
+}
+
+.contents__list {
+  margin-top: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.contents__list li { max-width: none; }
+
+.contents__list a {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-height: var(--rule-gap);
+  padding-block: .15rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* The name grows to fill the row, and its ::after is the dotted leader. */
+.contents__name {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.contents__name::after {
+  content: "";
+  flex: 1;
+  min-width: var(--space-6);
+  border-bottom: 2px dotted var(--pencil-faint);
+  translate: 0 -.3em;
+}
+
+.contents__no {
+  min-width: 3ch;
+  font-family: var(--font-label);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.contents__list a:hover .contents__name {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .18em;
+}
+
+/* Wide screens: title on the left, contents page on the right, sitting low like a book's front matter. */
+@media (min-width: 900px) {
+  .cover {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    align-items: end;
+    column-gap: var(--space-8);
+  }
+
+  .contents { justify-self: end; }
+}
+
+/* ---------- Back cover ---------- */
+
+.back-cover {
+  width: min(100% - 2 * var(--gutter), var(--page-width));
+  margin-inline: auto;
+  padding-block: var(--space-8) var(--space-9);
+  border-top: 3px double var(--pencil-faint);
+}
+
+.back-cover h2 { font-size: var(--text-h2); }
+
+.back-cover > * + * { margin-top: var(--space-4); }
